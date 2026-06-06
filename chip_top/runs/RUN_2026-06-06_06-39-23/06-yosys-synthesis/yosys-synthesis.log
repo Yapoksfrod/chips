@@ -1,0 +1,2410 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+
+1. Executing Liberty frontend: /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+Imported 428 cell types from liberty file.
+[INFO] Using SDC file '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/synthesis.abc.sdc' for ABC…
+
+2. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/chip_top.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/chip_top.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/chip_top.v
+Storing AST representation for module `$abstract\chip_top'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/fp16_sum_sub.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/fp16_sum_sub.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/fp16_sum_sub.v
+Storing AST representation for module `$abstract\fp16_sum_sub'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/fpmul.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/fpmul.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/fpmul.v
+Storing AST representation for module `$abstract\fpmul'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/rounder.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/rounder.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/rounder.v
+Storing AST representation for module `$abstract\rounder'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/myreg.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/myreg.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/myreg.v
+Storing AST representation for module `$abstract\myreg'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: /foss/designs/chip_top/src/fractional_divider.v
+Parsing SystemVerilog input from `/foss/designs/chip_top/src/fractional_divider.v' to AST representation.
+verilog frontend filename /foss/designs/chip_top/src/fractional_divider.v
+Storing AST representation for module `$abstract\fractional_divider'.
+Successfully finished Verilog frontend.
+
+8. Executing HIERARCHY pass (managing design hierarchy).
+
+9. Executing AST frontend in derive mode using pre-parsed AST for module `\chip_top'.
+Generating RTLIL representation for module `\chip_top'.
+
+9.1. Analyzing design hierarchy..
+Top module:  \chip_top
+Parameter \N = 8
+
+9.2. Executing AST frontend in derive mode using pre-parsed AST for module `\fractional_divider'.
+Parameter \N = 8
+Generating RTLIL representation for module `$paramod\fractional_divider\N=s32'00000000000000000000000000001000'.
+Note: Assuming pure combinatorial block at /foss/designs/chip_top/src/fractional_divider.v:110.5-170.8 in
+compliance with IEC 62142(E):2005 / IEEE Std. 1364.1(E):2002. Recommending
+use of @* instead of @(...) for better match of synthesis and simulation.
+
+9.3. Executing AST frontend in derive mode using pre-parsed AST for module `\fpmul'.
+Generating RTLIL representation for module `\fpmul'.
+
+9.4. Executing AST frontend in derive mode using pre-parsed AST for module `\fp16_sum_sub'.
+Generating RTLIL representation for module `\fp16_sum_sub'.
+
+9.5. Analyzing design hierarchy..
+Top module:  \chip_top
+Used module:     $paramod\fractional_divider\N=s32'00000000000000000000000000001000
+Used module:     \fpmul
+Used module:     \fp16_sum_sub
+Parameter \N = 1
+
+9.6. Executing AST frontend in derive mode using pre-parsed AST for module `\myreg'.
+Parameter \N = 1
+Generating RTLIL representation for module `$paramod\myreg\N=s32'00000000000000000000000000000001'.
+
+9.7. Executing AST frontend in derive mode using pre-parsed AST for module `\rounder'.
+Generating RTLIL representation for module `\rounder'.
+
+9.8. Analyzing design hierarchy..
+Top module:  \chip_top
+Used module:     $paramod\fractional_divider\N=s32'00000000000000000000000000001000
+Used module:     \fpmul
+Used module:         $paramod\myreg\N=s32'00000000000000000000000000000001
+Used module:         \rounder
+Used module:     \fp16_sum_sub
+
+9.9. Analyzing design hierarchy..
+Top module:  \chip_top
+Used module:     $paramod\fractional_divider\N=s32'00000000000000000000000000001000
+Used module:     \fpmul
+Used module:         $paramod\myreg\N=s32'00000000000000000000000000000001
+Used module:         \rounder
+Used module:     \fp16_sum_sub
+Removing unused module `$abstract\fractional_divider'.
+Removing unused module `$abstract\myreg'.
+Removing unused module `$abstract\rounder'.
+Removing unused module `$abstract\fpmul'.
+Removing unused module `$abstract\fp16_sum_sub'.
+Removing unused module `$abstract\chip_top'.
+Removed 6 unused modules.
+Renaming module chip_top to chip_top.
+
+10. Generating Graphviz representation of design.
+Writing dot description to `/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/hierarchy.dot'.
+Dumping module chip_top to page 1.
+
+11. Executing TRIBUF pass.
+
+12. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1. Analyzing design hierarchy..
+Top module:  \chip_top
+Used module:     $paramod\fractional_divider\N=s32'00000000000000000000000000001000
+Used module:     \fpmul
+Used module:         $paramod\myreg\N=s32'00000000000000000000000000000001
+Used module:         \rounder
+Used module:     \fp16_sum_sub
+
+12.2. Analyzing design hierarchy..
+Top module:  \chip_top
+Used module:     $paramod\fractional_divider\N=s32'00000000000000000000000000001000
+Used module:     \fpmul
+Used module:         $paramod\myreg\N=s32'00000000000000000000000000000001
+Used module:         \rounder
+Used module:     \fp16_sum_sub
+Removed 0 unused modules.
+
+13. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+14. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 6 switch rules as full_case in process $proc$/foss/designs/chip_top/src/chip_top.v:162$20 in module chip_top.
+Marked 1 switch rules as full_case in process $proc$/foss/designs/chip_top/src/chip_top.v:72$1 in module chip_top.
+Marked 1 switch rules as full_case in process $proc$/foss/designs/chip_top/src/myreg.v:12$128 in module $paramod\myreg\N=s32'00000000000000000000000000000001.
+Removed 1 dead cases from process $proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73 in module fp16_sum_sub.
+Marked 26 switch rules as full_case in process $proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73 in module fp16_sum_sub.
+Marked 2 switch rules as full_case in process $proc$/foss/designs/chip_top/src/fractional_divider.v:173$49 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Removed 1 dead cases from process $proc$/foss/designs/chip_top/src/fractional_divider.v:110$46 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Marked 3 switch rules as full_case in process $proc$/foss/designs/chip_top/src/fractional_divider.v:110$46 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Removed 1 dead cases from process $proc$/foss/designs/chip_top/src/fractional_divider.v:81$43 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Marked 4 switch rules as full_case in process $proc$/foss/designs/chip_top/src/fractional_divider.v:81$43 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Marked 2 switch rules as full_case in process $proc$/foss/designs/chip_top/src/fractional_divider.v:43$32 in module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Removed 1 dead cases from process $proc$/foss/designs/chip_top/src/rounder.v:24$131 in module rounder.
+Marked 2 switch rules as full_case in process $proc$/foss/designs/chip_top/src/rounder.v:24$131 in module rounder.
+Removed a total of 4 dead cases.
+
+15. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 20 redundant assignments.
+Promoted 5 assignments to connections.
+
+16. Executing PROC_INIT pass (extract init attributes).
+
+17. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+Found async reset \rst in `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+Found async reset \rst in `$paramod\myreg\N=s32'00000000000000000000000000000001.$proc$/foss/designs/chip_top/src/myreg.v:12$128'.
+Found async reset \rst in `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+Found async reset \rst in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:173$49'.
+Found async reset \rst in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:81$43'.
+Found async reset \rst in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+
+18. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~56 debug messages>
+
+19. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+     1/12: $0\div_start[0:0]
+     2/12: $0\mpy_en[0:0]
+     3/12: $0\ss_start[0:0]
+     4/12: $0\op_reg[3:0]
+     5/12: $0\bit_count[4:0]
+     6/12: $0\shift_out[15:0]
+     7/12: $0\shift_in[15:0]
+     8/12: $0\operand_reg[15:0]
+     9/12: $0\cmd_reg[15:0]
+    10/12: $0\acc_reg[15:0]
+    11/12: $0\state[2:0]
+    12/12: $0\miso[0:0]
+Creating decoders for process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+     1/6: $0\mosi_s1[0:0]
+     2/6: $0\mosi_s0[0:0]
+     3/6: $0\ss_s1[0:0]
+     4/6: $0\ss_s0[0:0]
+     5/6: $0\sclk_s1[0:0]
+     6/6: $0\sclk_s0[0:0]
+Creating decoders for process `$paramod\myreg\N=s32'00000000000000000000000000000001.$proc$/foss/designs/chip_top/src/myreg.v:12$128'.
+     1/1: $0\q[0:0]
+Creating decoders for process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+     1/70: $19\norm.uf_f[0:0]
+     2/70: $20\norm.e[7:0]
+     3/70: $18\norm.uf_f[0:0]
+     4/70: $17\norm.uf_f[0:0]
+     5/70: $19\norm.e[7:0]
+     6/70: $12\norm.m[8:0]
+     7/70: $18\norm.e[7:0]
+     8/70: $16\norm.uf_f[0:0]
+     9/70: $15\norm.uf_f[0:0]
+    10/70: $17\norm.e[7:0]
+    11/70: $11\norm.m[8:0]
+    12/70: $16\norm.e[7:0]
+    13/70: $14\norm.uf_f[0:0]
+    14/70: $13\norm.uf_f[0:0]
+    15/70: $15\norm.e[7:0]
+    16/70: $10\norm.m[8:0]
+    17/70: $14\norm.e[7:0]
+    18/70: $12\norm.uf_f[0:0]
+    19/70: $11\norm.uf_f[0:0]
+    20/70: $13\norm.e[7:0]
+    21/70: $9\norm.m[8:0]
+    22/70: $12\norm.e[7:0]
+    23/70: $10\norm.uf_f[0:0]
+    24/70: $9\norm.uf_f[0:0]
+    25/70: $11\norm.e[7:0]
+    26/70: $8\norm.m[8:0]
+    27/70: $10\norm.e[7:0]
+    28/70: $8\norm.uf_f[0:0]
+    29/70: $7\norm.uf_f[0:0]
+    30/70: $9\norm.e[7:0]
+    31/70: $7\norm.m[8:0]
+    32/70: $8\norm.e[7:0]
+    33/70: $6\norm.uf_f[0:0]
+    34/70: $5\norm.uf_f[0:0]
+    35/70: $7\norm.e[7:0]
+    36/70: $6\norm.m[8:0]
+    37/70: $4\norm.uf_f[0:0]
+    38/70: $6\norm.e[7:0]
+    39/70: $5\norm.m[8:0]
+    40/70: $5\norm.e[7:0]
+    41/70: $5\norm.of_f[0:0]
+    42/70: $4\norm.of_f[0:0]
+    43/70: $4\norm.e[7:0]
+    44/70: $4\norm.m[8:0]
+    45/70: $3\norm.uf_f[0:0]
+    46/70: $3\norm.of_f[0:0]
+    47/70: $3\norm.e[7:0]
+    48/70: $3\norm.m[8:0]
+    49/70: $2\norm.uf_f[0:0]
+    50/70: $2\norm.of_f[0:0]
+    51/70: $2\norm.e[7:0]
+    52/70: $2\norm.m[8:0]
+    53/70: $1\norm.uf_f[0:0]
+    54/70: $1\norm.of_f[0:0]
+    55/70: $1\norm.e[7:0]
+    56/70: $1\norm.m[8:0]
+    57/70: $0\underflow[0:0]
+    58/70: $0\overflow[0:0]
+    59/70: $0\done[0:0]
+    60/70: $0\cm_exp[7:0]
+    61/70: $0\cm_sign[0:0]
+    62/70: $0\cm_mant[8:0]
+    63/70: $0\al_b_larger[0:0]
+    64/70: $0\al_sb_eff[0:0]
+    65/70: $0\al_sa[0:0]
+    66/70: $0\al_mb[7:0]
+    67/70: $0\al_ma[7:0]
+    68/70: $0\al_exp[7:0]
+    69/70: $0\result[15:0]
+    70/70: $0\state[1:0]
+Creating decoders for process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:173$49'.
+     1/1: $0\counter[3:0]
+Creating decoders for process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+     1/7: $0\sel_rx[0:0]
+     2/7: $0\en_r[0:0]
+     3/7: $0\en_y[0:0]
+     4/7: $0\en_counter[0:0]
+     5/7: $0\en_shift[0:0]
+     6/7: $0\clr_shift[0:0]
+     7/7: $0\clr_counter[0:0]
+Creating decoders for process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:81$43'.
+     1/1: $0\state[0:0]
+Creating decoders for process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+     1/3: $0\quotient_shift_reg[7:0]
+     2/3: $0\remainder_reg[8:0]
+     3/3: $0\divisor_reg[8:0]
+Creating decoders for process `\rounder.$proc$/foss/designs/chip_top/src/rounder.v:24$131'.
+     1/2: $2\mant_rounded[8:0]
+     2/2: $1\mant_rounded[8:0]
+
+20. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_shift' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\clr_shift' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_r' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_y' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\sel_rx' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\clr_counter' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_counter' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `\rounder.\mant_rounded' from process `\rounder.$proc$/foss/designs/chip_top/src/rounder.v:24$131'.
+
+21. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\chip_top.\miso' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1049' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\state' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1052' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\acc_reg' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1055' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\cmd_reg' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1058' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\operand_reg' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1061' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\shift_in' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1064' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\shift_out' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1067' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\bit_count' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1070' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\op_reg' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1073' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\ss_start' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1076' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\mpy_en' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1079' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\div_start' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+  created $adff cell `$procdff$1082' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\sclk_s0' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1085' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\sclk_s1' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1088' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\ss_s0' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1091' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\ss_s1' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1094' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\mosi_s0' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1097' with positive edge clock and positive level reset.
+Creating register for signal `\chip_top.\mosi_s1' using process `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+  created $adff cell `$procdff$1100' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\myreg\N=s32'00000000000000000000000000000001.\q' using process `$paramod\myreg\N=s32'00000000000000000000000000000001.$proc$/foss/designs/chip_top/src/myreg.v:12$128'.
+  created $adff cell `$procdff$1103' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\state' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1106' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\result' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1109' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\done' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1112' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\overflow' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1115' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\underflow' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1118' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_exp' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1121' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_ma' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1124' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_mb' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1127' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_sa' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1130' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_sb_eff' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1133' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_b_larger' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1136' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_mant' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1139' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_sign' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1142' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_exp' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $adff cell `$procdff$1145' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\norm.m' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $dff cell `$procdff$1150' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.e' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $dff cell `$procdff$1155' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.of_f' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $dff cell `$procdff$1160' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.uf_f' using process `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+  created $dff cell `$procdff$1165' with positive edge clock.
+Creating register for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\counter' using process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:173$49'.
+  created $adff cell `$procdff$1168' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\state' using process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:81$43'.
+  created $adff cell `$procdff$1171' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\divisor_reg' using process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+  created $adff cell `$procdff$1174' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\remainder_reg' using process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+  created $adff cell `$procdff$1177' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\quotient_shift_reg' using process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+  created $adff cell `$procdff$1180' with positive edge clock and positive level reset.
+
+22. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+23. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 15 empty switches in `\chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+Removing empty process `chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:162$20'.
+Removing empty process `chip_top.$proc$/foss/designs/chip_top/src/chip_top.v:72$1'.
+Found and cleaned up 1 empty switch in `$paramod\myreg\N=s32'00000000000000000000000000000001.$proc$/foss/designs/chip_top/src/myreg.v:12$128'.
+Removing empty process `$paramod\myreg\N=s32'00000000000000000000000000000001.$proc$/foss/designs/chip_top/src/myreg.v:12$128'.
+Found and cleaned up 26 empty switches in `\fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+Removing empty process `fp16_sum_sub.$proc$/foss/designs/chip_top/src/fp16_sum_sub.v:81$73'.
+Found and cleaned up 2 empty switches in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:173$49'.
+Removing empty process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:173$49'.
+Found and cleaned up 3 empty switches in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+Removing empty process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+Found and cleaned up 3 empty switches in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:81$43'.
+Removing empty process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:81$43'.
+Found and cleaned up 4 empty switches in `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+Removing empty process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:43$32'.
+Found and cleaned up 2 empty switches in `\rounder.$proc$/foss/designs/chip_top/src/rounder.v:24$131'.
+Removing empty process `rounder.$proc$/foss/designs/chip_top/src/rounder.v:24$131'.
+Cleaned up 56 empty switches.
+
+24. Executing CHECK pass (checking for obvious problems).
+Checking module chip_top...
+Checking module $paramod\myreg\N=s32'00000000000000000000000000000001...
+Checking module fp16_sum_sub...
+Checking module fpmul...
+Checking module $paramod\fractional_divider\N=s32'00000000000000000000000000001000...
+Checking module rounder...
+Found and reported 0 problems.
+
+25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~34 debug messages>
+Optimizing module $paramod\myreg\N=s32'00000000000000000000000000000001.
+<suppressed ~2 debug messages>
+Optimizing module fp16_sum_sub.
+<suppressed ~112 debug messages>
+Optimizing module fpmul.
+<suppressed ~4 debug messages>
+Optimizing module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+<suppressed ~39 debug messages>
+Optimizing module rounder.
+<suppressed ~4 debug messages>
+
+26. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\myreg\N=s32'00000000000000000000000000000001.
+Deleting now unused module fp16_sum_sub.
+Deleting now unused module fpmul.
+Deleting now unused module $paramod\fractional_divider\N=s32'00000000000000000000000000001000.
+Deleting now unused module rounder.
+<suppressed ~5 debug messages>
+
+27. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~1 debug messages>
+
+28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 55 unused cells and 485 unused wires.
+<suppressed ~63 debug messages>
+
+29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+30. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~327 debug messages>
+Removed a total of 109 cells.
+
+31. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$386: { $flatten\my_sum_sub.$11\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$11\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$386: $flatten\my_sum_sub.$11\norm.m[8:0] -> { $flatten\my_sum_sub.$11\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$11\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$447: { $flatten\my_sum_sub.$10\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$10\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$447: $flatten\my_sum_sub.$10\norm.m[8:0] -> { $flatten\my_sum_sub.$10\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$10\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$508: { $flatten\my_sum_sub.$9\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$9\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$508: $flatten\my_sum_sub.$9\norm.m[8:0] -> { $flatten\my_sum_sub.$9\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$9\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$569: { $flatten\my_sum_sub.$8\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$8\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$569: $flatten\my_sum_sub.$8\norm.m[8:0] -> { $flatten\my_sum_sub.$8\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$8\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$630: { $flatten\my_sum_sub.$7\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$7\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$630: $flatten\my_sum_sub.$7\norm.m[8:0] -> { $flatten\my_sum_sub.$7\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$7\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_divider.$ternary$/foss/designs/chip_top/src/fractional_divider.v:74$41: \my_divider.sub_out -> { 1'0 \my_divider.sub_out [7:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$691: { $flatten\my_sum_sub.$6\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$6\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$691: $flatten\my_sum_sub.$6\norm.m[8:0] -> { $flatten\my_sum_sub.$6\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$6\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$752: { $flatten\my_sum_sub.$4\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $flatten\my_sum_sub.$4\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$752: $flatten\my_sum_sub.$4\norm.m[8:0] -> { $flatten\my_sum_sub.$4\norm.m[8:0] [8] 1'1 $flatten\my_sum_sub.$4\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $flatten\my_sum_sub.$procmux$824: \my_sum_sub.cm_mant -> { 1'0 \my_sum_sub.cm_mant [7:0] }
+      Replacing known input bits on port B of cell $flatten\my_sum_sub.$procmux$824: { 1'0 \my_sum_sub.cm_mant [8:1] } -> { 2'01 \my_sum_sub.cm_mant [7:1] }
+      Replacing known input bits on port B of cell $flatten\my_mul.$ternary$/foss/designs/chip_top/src/fpmul.v:40$63: \my_mul.mult_out [15:5] -> { 1'1 \my_mul.mult_out [14:5] }
+      Replacing known input bits on port B of cell $flatten\my_mul.\rounder0.$ternary$/foss/designs/chip_top/src/rounder.v:53$135: \my_mul.rounder0.mant_rounded [8:1] -> { 1'1 \my_mul.rounder0.mant_rounded [7:1] }
+      Replacing known input bits on port A of cell $flatten\my_mul.\rounder0.$procmux$1036: { 1'0 \my_mul.rounder0.mant_i [10:3] } -> { 1'0 \my_mul.rounder0.mant_i [10:4] 1'0 }
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$327.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$330.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$332.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$339.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$341.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$344.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$346.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$353.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$355.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$358.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$360.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$366.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$369.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$371.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$377.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$380.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$382.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$400.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$402.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$405.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$407.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$414.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$416.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$419.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$421.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$427.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$430.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$432.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$461.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$463.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$466.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$468.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$475.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$477.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$480.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$482.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$488.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$491.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$493.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$522.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$524.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$527.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$529.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$536.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$538.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$541.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$543.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$549.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$552.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$554.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$583.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$585.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$588.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$590.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$597.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$599.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$602.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$604.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$644.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$646.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$649.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$651.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$658.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$660.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$663.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$665.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$705.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$707.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$710.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$712.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$719.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$721.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$724.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$726.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$732.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$735.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$737.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$765.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$767.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$773.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$775.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$781.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$783.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$789.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$792.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$794.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$800.
+    dead port 1/2 on $mux $flatten\my_sum_sub.$procmux$803.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$805.
+    dead port 2/2 on $mux $flatten\my_sum_sub.$procmux$849.
+    dead port 2/2 on $mux $flatten\my_mul.\rounder0.$procmux$1038.
+Removed 91 multiplexer ports.
+<suppressed ~749 debug messages>
+
+32. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+    New ctrl vector for $pmux cell $procmux$184: { $procmux$189_CMP $auto$opt_reduce.cc:137:opt_pmux$1187 $procmux$185_CMP }
+    New ctrl vector for $pmux cell $flatten\my_mul.\rounder0.$procmux$1041: { $auto$opt_reduce.cc:137:opt_pmux$1189 $flatten\my_mul.\rounder0.$procmux$1039_CMP }
+    New ctrl vector for $pmux cell $procmux$206: { $procmux$189_CMP $auto$opt_reduce.cc:137:opt_pmux$1191 $procmux$185_CMP $procmux$207_CMP }
+  Optimizing cells in module \chip_top.
+Performed a total of 3 changes.
+
+33. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~57 debug messages>
+Removed a total of 19 cells.
+
+34. Executing OPT_DFF pass (perform DFF optimizations).
+
+35. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 0 unused cells and 210 unused wires.
+<suppressed ~1 debug messages>
+
+36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+37. Rerunning OPT passes. (Maybe there is more to do…)
+
+38. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~416 debug messages>
+
+39. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+    New ctrl vector for $pmux cell $procmux$206: { $auto$opt_reduce.cc:137:opt_pmux$1187 $auto$opt_reduce.cc:137:opt_pmux$1193 $procmux$207_CMP }
+    New ctrl vector for $pmux cell $procmux$224: $auto$opt_reduce.cc:137:opt_pmux$1195
+    New ctrl vector for $pmux cell $procmux$313: $auto$opt_reduce.cc:137:opt_pmux$1197
+  Optimizing cells in module \chip_top.
+Performed a total of 3 changes.
+
+40. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+41. Executing OPT_DFF pass (perform DFF optimizations).
+
+42. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+43. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+44. Rerunning OPT passes. (Maybe there is more to do…)
+
+45. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~413 debug messages>
+
+46. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+47. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+48. Executing OPT_DFF pass (perform DFF optimizations).
+
+49. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+50. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+51. Executing FSM pass (extract and optimize FSM).
+
+51.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register chip_top.my_sum_sub.state.
+Found FSM state register chip_top.state.
+
+51.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\my_sum_sub.state' from module `\chip_top'.
+  found $adff cell for state register: $flatten\my_sum_sub.$procdff$1106
+  root of input selection tree: $flatten\my_sum_sub.$0\state[1:0]
+  found reset state: 2'00 (from async reset)
+  found ctrl input: $flatten\my_sum_sub.$procmux$333_CMP
+  found ctrl input: $flatten\my_sum_sub.$procmux$888_CMP
+  found ctrl input: $flatten\my_sum_sub.$procmux$913_CMP
+  found ctrl input: $flatten\my_sum_sub.$procmux$957_CMP
+  found state code: 2'11
+  found state code: 2'10
+  found ctrl input: \ss_start
+  found state code: 2'01
+  found ctrl output: $flatten\my_sum_sub.$procmux$957_CMP
+  found ctrl output: $flatten\my_sum_sub.$procmux$913_CMP
+  found ctrl output: $flatten\my_sum_sub.$procmux$888_CMP
+  found ctrl output: $flatten\my_sum_sub.$procmux$333_CMP
+  ctrl inputs: \ss_start
+  ctrl outputs: { $flatten\my_sum_sub.$0\state[1:0] $flatten\my_sum_sub.$procmux$333_CMP $flatten\my_sum_sub.$procmux$888_CMP $flatten\my_sum_sub.$procmux$913_CMP $flatten\my_sum_sub.$procmux$957_CMP }
+  transition:       2'00 1'0 ->       2'00 6'000001
+  transition:       2'00 1'1 ->       2'01 6'010001
+  transition:       2'10 1'- ->       2'11 6'110100
+  transition:       2'01 1'- ->       2'10 6'100010
+  transition:       2'11 1'- ->       2'00 6'001000
+Extracting FSM `\state' from module `\chip_top'.
+  found $adff cell for state register: $procdff$1052
+  root of input selection tree: $0\state[2:0]
+  found reset state: 3'000 (from async reset)
+  found ctrl input: \ss_s1
+  found ctrl input: $procmux$207_CMP
+  found ctrl input: $procmux$143_CMP
+  found ctrl input: $procmux$185_CMP
+  found ctrl input: $procmux$173_CMP
+  found ctrl input: $procmux$189_CMP
+  found ctrl input: $procmux$190_CMP
+  found ctrl input: $procmux$141_CMP
+  found ctrl input: $procmux$151_CMP
+  found ctrl input: $procmux$162_CTRL
+  found ctrl input: \div_done
+  found state code: 3'011
+  found ctrl input: \my_mul.reg1en.q
+  found ctrl input: \my_sum_sub.done
+  found state code: 3'101
+  found ctrl input: \sclk_fall
+  found ctrl input: $eq$/foss/designs/chip_top/src/chip_top.v:217$22_Y
+  found state code: 3'100
+  found ctrl input: $logic_or$/foss/designs/chip_top/src/chip_top.v:239$29_Y
+  found state code: 3'010
+  found state code: 3'001
+  found ctrl output: $procmux$143_CMP
+  found ctrl output: $procmux$173_CMP
+  found ctrl output: $procmux$185_CMP
+  found ctrl output: $procmux$189_CMP
+  found ctrl output: $procmux$190_CMP
+  found ctrl output: $procmux$207_CMP
+  ctrl inputs: { \my_mul.reg1en.q \my_sum_sub.done $procmux$162_CTRL $procmux$151_CMP $procmux$141_CMP $logic_or$/foss/designs/chip_top/src/chip_top.v:239$29_Y $eq$/foss/designs/chip_top/src/chip_top.v:217$22_Y \div_done \sclk_fall \ss_s1 }
+  ctrl outputs: { $procmux$207_CMP $procmux$190_CMP $procmux$189_CMP $procmux$185_CMP $procmux$173_CMP $procmux$143_CMP $0\state[2:0] }
+  transition:      3'000 10'---------0 ->      3'001 9'010000001
+  transition:      3'000 10'---------1 ->      3'000 9'010000000
+  transition:      3'100 10'---------0 ->      3'101 9'000001101
+  transition:      3'100 10'---------1 ->      3'000 9'000001000
+  transition:      3'010 10'-----0---0 ->      3'000 9'000010000
+  transition:      3'010 10'-----1---0 ->      3'011 9'000010011
+  transition:      3'010 10'---------1 ->      3'000 9'000010000
+  transition:      3'001 10'--------00 ->      3'001 9'001000001
+  transition:      3'001 10'------0-10 ->      3'001 9'001000001
+  transition:      3'001 10'------1-10 ->      3'010 9'001000010
+  transition:      3'001 10'---------1 ->      3'000 9'001000000
+  transition:      3'101 10'--000----0 ->      3'000 9'100000000
+  transition:      3'101 10'-01------0 ->      3'101 9'100000101
+  transition:      3'101 10'-11------0 ->      3'011 9'100000011
+  transition:      3'101 10'0--1-----0 ->      3'101 9'100000101
+  transition:      3'101 10'1--1-----0 ->      3'011 9'100000011
+  transition:      3'101 10'----1--0-0 ->      3'101 9'100000101
+  transition:      3'101 10'----1--1-0 ->      3'011 9'100000011
+  transition:      3'101 10'---------1 ->      3'000 9'100000000
+  transition:      3'011 10'--------00 ->      3'011 9'000100011
+  transition:      3'011 10'------0-10 ->      3'011 9'000100011
+  transition:      3'011 10'------1-10 ->      3'100 9'000100100
+  transition:      3'011 10'---------1 ->      3'000 9'000100000
+
+51.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$1204' from module `\chip_top'.
+Optimizing FSM `$fsm$\my_sum_sub.state$1198' from module `\chip_top'.
+
+51.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 25 unused cells and 25 unused wires.
+<suppressed ~26 debug messages>
+
+51.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\my_sum_sub.state$1198' from module `\chip_top'.
+  Removing unused output signal $flatten\my_sum_sub.$procmux$957_CMP.
+  Removing unused output signal $flatten\my_sum_sub.$0\state[1:0] [0].
+  Removing unused output signal $flatten\my_sum_sub.$0\state[1:0] [1].
+Optimizing FSM `$fsm$\state$1204' from module `\chip_top'.
+  Removing unused output signal $0\state[2:0] [0].
+  Removing unused output signal $0\state[2:0] [1].
+  Removing unused output signal $0\state[2:0] [2].
+
+51.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\my_sum_sub.state$1198' from module `\chip_top' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> ---1
+  10 -> --1-
+  01 -> -1--
+  11 -> 1---
+Recoding FSM `$fsm$\state$1204' from module `\chip_top' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  000 -> -----1
+  100 -> ----1-
+  010 -> ---1--
+  001 -> --1---
+  101 -> -1----
+  011 -> 1-----
+
+51.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\my_sum_sub.state$1198' from module `chip_top':
+-------------------------------------
+
+  Information on FSM $fsm$\my_sum_sub.state$1198 (\my_sum_sub.state):
+
+  Number of input signals:    1
+  Number of output signals:   3
+  Number of state bits:       4
+
+  Input signals:
+    0: \ss_start
+
+  Output signals:
+    0: $flatten\my_sum_sub.$procmux$913_CMP
+    1: $flatten\my_sum_sub.$procmux$888_CMP
+    2: $flatten\my_sum_sub.$procmux$333_CMP
+
+  State encoding:
+    0:     4'---1  <RESET STATE>
+    1:     4'--1-
+    2:     4'-1--
+    3:     4'1---
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 1'0   ->     0 3'000
+      1:     0 1'1   ->     2 3'000
+      2:     1 1'-   ->     3 3'010
+      3:     2 1'-   ->     1 3'001
+      4:     3 1'-   ->     0 3'100
+
+-------------------------------------
+
+FSM `$fsm$\state$1204' from module `chip_top':
+-------------------------------------
+
+  Information on FSM $fsm$\state$1204 (\state):
+
+  Number of input signals:   10
+  Number of output signals:   6
+  Number of state bits:       6
+
+  Input signals:
+    0: \ss_s1
+    1: \sclk_fall
+    2: \div_done
+    3: $eq$/foss/designs/chip_top/src/chip_top.v:217$22_Y
+    4: $logic_or$/foss/designs/chip_top/src/chip_top.v:239$29_Y
+    5: $procmux$141_CMP
+    6: $procmux$151_CMP
+    7: $procmux$162_CTRL
+    8: \my_sum_sub.done
+    9: \my_mul.reg1en.q
+
+  Output signals:
+    0: $procmux$143_CMP
+    1: $procmux$173_CMP
+    2: $procmux$185_CMP
+    3: $procmux$189_CMP
+    4: $procmux$190_CMP
+    5: $procmux$207_CMP
+
+  State encoding:
+    0:   6'-----1  <RESET STATE>
+    1:   6'----1-
+    2:   6'---1--
+    3:   6'--1---
+    4:   6'-1----
+    5:   6'1-----
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 10'---------1   ->     0 6'010000
+      1:     0 10'---------0   ->     3 6'010000
+      2:     1 10'---------1   ->     0 6'000001
+      3:     1 10'---------0   ->     4 6'000001
+      4:     2 10'-----0---0   ->     0 6'000010
+      5:     2 10'---------1   ->     0 6'000010
+      6:     2 10'-----1---0   ->     5 6'000010
+      7:     3 10'---------1   ->     0 6'001000
+      8:     3 10'------1-10   ->     2 6'001000
+      9:     3 10'--------00   ->     3 6'001000
+     10:     3 10'------0-10   ->     3 6'001000
+     11:     4 10'--000----0   ->     0 6'100000
+     12:     4 10'---------1   ->     0 6'100000
+     13:     4 10'----1--0-0   ->     4 6'100000
+     14:     4 10'0--1-----0   ->     4 6'100000
+     15:     4 10'-01------0   ->     4 6'100000
+     16:     4 10'----1--1-0   ->     5 6'100000
+     17:     4 10'1--1-----0   ->     5 6'100000
+     18:     4 10'-11------0   ->     5 6'100000
+     19:     5 10'---------1   ->     0 6'000100
+     20:     5 10'------1-10   ->     1 6'000100
+     21:     5 10'--------00   ->     5 6'000100
+     22:     5 10'------0-10   ->     5 6'000100
+
+-------------------------------------
+
+51.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\my_sum_sub.state$1198' from module `\chip_top'.
+Mapping FSM `$fsm$\state$1204' from module `\chip_top'.
+
+52. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~9 debug messages>
+
+53. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+54. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~398 debug messages>
+
+55. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+56. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+57. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1073 ($adff) from module chip_top (D = \shift_in [7:4], Q = \op_reg).
+Adding EN signal on $procdff$1070 ($adff) from module chip_top (D = $0\bit_count[4:0], Q = \bit_count).
+Adding EN signal on $procdff$1067 ($adff) from module chip_top (D = $procmux$206_Y, Q = \shift_out).
+Adding EN signal on $procdff$1064 ($adff) from module chip_top (D = { \mosi_s1 \shift_in [15:1] }, Q = \shift_in).
+Adding EN signal on $procdff$1061 ($adff) from module chip_top (D = \shift_in, Q = \operand_reg).
+Adding EN signal on $procdff$1055 ($adff) from module chip_top (D = $procmux$265_Y, Q = \acc_reg).
+Adding EN signal on $procdff$1049 ($adff) from module chip_top (D = $0\miso[0:0], Q = \miso).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1145 ($adff) from module chip_top (D = \my_sum_sub.al_exp, Q = \my_sum_sub.cm_exp).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1142 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$894_Y, Q = \my_sum_sub.cm_sign).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1139 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$903_Y, Q = \my_sum_sub.cm_mant).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1136 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$910_Y, Q = \my_sum_sub.al_b_larger).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1133 ($adff) from module chip_top (D = \my_sum_sub.sb_eff, Q = \my_sum_sub.al_sb_eff).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1130 ($adff) from module chip_top (D = \acc_reg [15], Q = \my_sum_sub.al_sa).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1127 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$925_Y, Q = \my_sum_sub.al_mb).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1124 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$932_Y, Q = \my_sum_sub.al_ma).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1121 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$939_Y, Q = \my_sum_sub.al_exp).
+Adding EN signal on $flatten\my_sum_sub.$procdff$1109 ($adff) from module chip_top (D = $flatten\my_sum_sub.$procmux$947_Y, Q = \my_sum_sub.result).
+Adding EN signal on $flatten\my_divider.$procdff$1180 ($adff) from module chip_top (D = $flatten\my_divider.$procmux$1026_Y, Q = \my_divider.quotient_shift_reg).
+Adding EN signal on $flatten\my_divider.$procdff$1177 ($adff) from module chip_top (D = \my_divider.input_mux_out, Q = \my_divider.remainder_reg).
+Adding EN signal on $flatten\my_divider.$procdff$1174 ($adff) from module chip_top (D = { 1'0 \my_divider.divisor }, Q = \my_divider.divisor_reg).
+Adding EN signal on $flatten\my_divider.$procdff$1168 ($adff) from module chip_top (D = $flatten\my_divider.$procmux$959_Y, Q = \my_divider.counter).
+Setting constant 0-bit at position 8 on $auto$ff.cc:337:slice$1380 ($adffe) from module chip_top.
+
+58. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 25 unused cells and 47 unused wires.
+<suppressed ~26 debug messages>
+
+59. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~5 debug messages>
+
+60. Rerunning OPT passes. (Maybe there is more to do…)
+
+61. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~366 debug messages>
+
+62. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+63. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~39 debug messages>
+Removed a total of 13 cells.
+
+64. Executing OPT_DFF pass (perform DFF optimizations).
+
+65. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 0 unused cells and 13 unused wires.
+<suppressed ~1 debug messages>
+
+66. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+67. Rerunning OPT passes. (Maybe there is more to do…)
+
+68. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~369 debug messages>
+
+69. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+70. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+71. Executing OPT_DFF pass (perform DFF optimizations).
+
+72. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+73. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+74. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 8) from FF cell chip_top.$auto$ff.cc:337:slice$1378 ($adffe).
+Removed top 2 bits (of 3) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1348 ($ne).
+Removed top 1 bits (of 3) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1329 ($ne).
+Removed top 1 bits (of 3) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1327 ($ne).
+Removed top 3 bits (of 4) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1325 ($ne).
+Removed top 1 bits (of 2) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1321 ($ne).
+Removed top 2 bits (of 3) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1314 ($ne).
+Removed top 2 bits (of 3) from port B of cell chip_top.$auto$opt_dff.cc:248:make_patterns_logic$1312 ($ne).
+Removed top 1 bits (of 3) from port B of cell chip_top.$auto$fsm_map.cc:77:implement_pattern_cache$1283 ($eq).
+Removed top 1 bits (of 3) from port B of cell chip_top.$auto$fsm_map.cc:77:implement_pattern_cache$1270 ($eq).
+Removed top 1 bits (of 3) from port B of cell chip_top.$auto$fsm_map.cc:77:implement_pattern_cache$1266 ($eq).
+Removed top 1 bits (of 9) from port A of cell chip_top.$sub$/foss/designs/chip_top/src/chip_top.v:152$12 ($sub).
+Removed top 1 bits (of 9) from port B of cell chip_top.$sub$/foss/designs/chip_top/src/chip_top.v:152$12 ($sub).
+Removed top 2 bits (of 9) from port B of cell chip_top.$add$/foss/designs/chip_top/src/chip_top.v:152$13 ($add).
+Removed top 1 bits (of 9) from port B of cell chip_top.$ge$/foss/designs/chip_top/src/chip_top.v:154$16 ($ge).
+Removed top 4 bits (of 5) from port B of cell chip_top.$add$/foss/designs/chip_top/src/chip_top.v:216$21 ($add).
+Removed top 1 bits (of 5) from port B of cell chip_top.$eq$/foss/designs/chip_top/src/chip_top.v:217$22 ($eq).
+Removed top 3 bits (of 4) from port B of cell chip_top.$eq$/foss/designs/chip_top/src/chip_top.v:241$26 ($eq).
+Removed top 2 bits (of 4) from port B of cell chip_top.$eq$/foss/designs/chip_top/src/chip_top.v:242$28 ($eq).
+Removed top 2 bits (of 4) from port B of cell chip_top.$procmux$141_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell chip_top.$procmux$151_CMP0 ($eq).
+Removed top 3 bits (of 4) from port B of cell chip_top.$procmux$269_CMP0 ($eq).
+Removed top 1 bits (of 16) from mux cell chip_top.$flatten\my_sum_sub.$procmux$944 ($mux).
+Removed top 2 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$847 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$824 ($mux).
+Removed top 2 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$778 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$393 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$391 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$388 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$386 ($mux).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:203$122 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:203$122 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:203$121 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:202$117 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:201$113 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:200$109 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:199$105 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:198$101 ($gt).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98 ($sub).
+Removed top 24 bits (of 32) from port Y of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98 ($sub).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:197$97 ($gt).
+Removed top 7 bits (of 8) from port B of cell chip_top.$flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:191$93 ($add).
+Removed top 1 bits (of 9) from port A of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:156$89 ($sub).
+Removed top 1 bits (of 9) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:156$89 ($sub).
+Removed top 1 bits (of 9) from port A of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:153$88 ($sub).
+Removed top 1 bits (of 9) from port B of cell chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:153$88 ($sub).
+Removed top 1 bits (of 9) from port A of cell chip_top.$flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:148$86 ($add).
+Removed top 1 bits (of 9) from port B of cell chip_top.$flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:148$86 ($add).
+Removed top 4 bits (of 8) from port B of cell chip_top.$flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:131$81 ($ge).
+Removed top 4 bits (of 8) from port B of cell chip_top.$flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:125$76 ($ge).
+Removed top 7 bits (of 8) from port B of cell chip_top.$flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:49$133 ($add).
+Removed top 2 bits (of 3) from port B of cell chip_top.$flatten\my_mul.\rounder0.$procmux$1045_CMP0 ($eq).
+Removed top 1 bits (of 8) from mux cell chip_top.$flatten\my_mul.\rounder0.$ternary$/foss/designs/chip_top/src/rounder.v:53$135 ($mux).
+Removed top 1 bits (of 3) from port B of cell chip_top.$flatten\my_mul.\rounder0.$procmux$1044_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell chip_top.$flatten\my_mul.\rounder0.$procmux$1043_CMP0 ($eq).
+Removed top 1 bits (of 16) from mux cell chip_top.$flatten\my_mul.$ternary$/foss/designs/chip_top/src/fpmul.v:52$66 ($mux).
+Removed top 1 bits (of 9) from port A of cell chip_top.$flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:19$130 ($add).
+Removed top 8 bits (of 9) from port B of cell chip_top.$flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:19$130 ($add).
+Removed top 1 bits (of 16) from mux cell chip_top.$flatten\my_mul.$ternary$/foss/designs/chip_top/src/fpmul.v:51$67 ($mux).
+Removed top 7 bits (of 8) from port B of cell chip_top.$flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:37$60 ($add).
+Removed top 1 bits (of 8) from port B of cell chip_top.$flatten\my_mul.$sub$/foss/designs/chip_top/src/fpmul.v:34$58 ($sub).
+Removed top 8 bits (of 16) from port A of cell chip_top.$flatten\my_mul.$mul$/foss/designs/chip_top/src/fpmul.v:31$57 ($mul).
+Removed top 8 bits (of 16) from port B of cell chip_top.$flatten\my_mul.$mul$/foss/designs/chip_top/src/fpmul.v:31$57 ($mul).
+Removed top 1 bits (of 8) from mux cell chip_top.$flatten\my_divider.$procmux$1026 ($mux).
+Removed top 31 bits (of 32) from mux cell chip_top.$flatten\my_divider.$ternary$/foss/designs/chip_top/src/fractional_divider.v:189$54 ($mux).
+Removed top 31 bits (of 32) from port B of cell chip_top.$flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52 ($add).
+Removed top 28 bits (of 32) from port Y of cell chip_top.$flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52 ($add).
+Removed top 1 bits (of 9) from port B of cell chip_top.$flatten\my_divider.$sub$/foss/designs/chip_top/src/fractional_divider.v:76$42 ($sub).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_divider.$ternary$/foss/designs/chip_top/src/fractional_divider.v:74$41 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$454 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$452 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$449 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$447 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$515 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$513 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$510 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$508 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$576 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$574 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$571 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$569 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$637 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$635 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$632 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$630 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$698 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$696 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$693 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$691 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$759 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$757 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$754 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$752 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$829 ($mux).
+Removed top 1 bits (of 9) from mux cell chip_top.$flatten\my_sum_sub.$procmux$827 ($mux).
+Removed top 28 bits (of 32) from wire chip_top.$flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52_Y.
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$10\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$11\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$12\norm.m[8:0].
+Removed top 2 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$19\norm.e[7:0].
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$20\norm.e[7:0].
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$3\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$4\norm.m[8:0].
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$5\norm.m[8:0].
+Removed top 2 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$6\norm.e[7:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$6\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$7\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$8\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$9\norm.m[8:0].
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$386_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$388_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$391_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$436_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$438_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$441_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$447_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$449_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$452_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$497_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$499_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$502_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$508_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$510_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$513_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$558_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$560_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$563_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$569_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$571_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$574_Y.
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$630_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$632_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$635_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$680_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$682_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$685_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$691_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$693_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$696_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$741_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$743_Y.
+Removed top 1 bits (of 8) from wire chip_top.$flatten\my_sum_sub.$procmux$746_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$752_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$754_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$757_Y.
+Removed top 1 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$824_Y.
+Removed top 2 bits (of 9) from wire chip_top.$flatten\my_sum_sub.$procmux$827_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114_Y.
+Removed top 24 bits (of 32) from wire chip_top.$flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118_Y.
+Removed top 1 bits (of 8) from wire chip_top.div_quotient.
+Removed top 2 bits (of 16) from wire chip_top.ss_result.
+
+75. Executing PEEPOPT pass (run peephole optimizers).
+
+76. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 0 unused cells and 61 unused wires.
+<suppressed ~1 debug messages>
+
+77. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module chip_top:
+  creating $macc model for $add$/foss/designs/chip_top/src/chip_top.v:152$13 ($add).
+  creating $macc model for $add$/foss/designs/chip_top/src/chip_top.v:216$21 ($add).
+  creating $macc model for $flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52 ($add).
+  creating $macc model for $flatten\my_divider.$sub$/foss/designs/chip_top/src/fractional_divider.v:76$42 ($sub).
+  creating $macc model for $flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:28$56 ($add).
+  creating $macc model for $flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:37$60 ($add).
+  creating $macc model for $flatten\my_mul.$mul$/foss/designs/chip_top/src/fpmul.v:31$57 ($mul).
+  creating $macc model for $flatten\my_mul.$sub$/foss/designs/chip_top/src/fpmul.v:34$58 ($sub).
+  creating $macc model for $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:19$130 ($add).
+  creating $macc model for $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:49$133 ($add).
+  creating $macc model for $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:148$86 ($add).
+  creating $macc model for $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:191$93 ($add).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:125$75 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:131$80 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:153$88 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:156$89 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118 ($sub).
+  creating $macc model for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:203$122 ($sub).
+  creating $macc model for $sub$/foss/designs/chip_top/src/chip_top.v:152$12 ($sub).
+  merging $macc model for $flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:28$56 into $flatten\my_mul.$sub$/foss/designs/chip_top/src/fpmul.v:34$58.
+  merging $macc model for $sub$/foss/designs/chip_top/src/chip_top.v:152$12 into $add$/foss/designs/chip_top/src/chip_top.v:152$13.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:156$89.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:153$88.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:131$80.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:125$75.
+  creating $alu model for $macc $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:191$93.
+  creating $alu model for $macc $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:148$86.
+  creating $alu model for $macc $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:49$133.
+  creating $alu model for $macc $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:19$130.
+  creating $alu model for $macc $flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:37$60.
+  creating $alu model for $macc $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:203$122.
+  creating $alu model for $macc $flatten\my_divider.$sub$/foss/designs/chip_top/src/fractional_divider.v:76$42.
+  creating $alu model for $macc $flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52.
+  creating $alu model for $macc $add$/foss/designs/chip_top/src/chip_top.v:216$21.
+  creating $macc cell for $flatten\my_mul.$mul$/foss/designs/chip_top/src/fpmul.v:31$57: $auto$alumacc.cc:382:replace_macc$1443
+  creating $macc cell for $flatten\my_mul.$sub$/foss/designs/chip_top/src/fpmul.v:34$58: $auto$alumacc.cc:382:replace_macc$1444
+  creating $macc cell for $add$/foss/designs/chip_top/src/chip_top.v:152$13: $auto$alumacc.cc:382:replace_macc$1445
+  creating $alu model for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:121$74 ($ge): merged with $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:125$75.
+  creating $alu model for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:125$76 ($ge): new $alu
+  creating $alu model for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:131$81 ($ge): new $alu
+  creating $alu model for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:187$92 ($ge): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:197$97 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:198$101 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:199$105 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:200$109 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:201$113 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:202$117 ($gt): new $alu
+  creating $alu model for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:203$121 ($gt): new $alu
+  creating $alu model for $ge$/foss/designs/chip_top/src/chip_top.v:154$16 ($ge): new $alu
+  creating $alu cell for $ge$/foss/designs/chip_top/src/chip_top.v:154$16: $auto$alumacc.cc:512:replace_alu$1457
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:203$121: $auto$alumacc.cc:512:replace_alu$1470
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:202$117: $auto$alumacc.cc:512:replace_alu$1481
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:201$113: $auto$alumacc.cc:512:replace_alu$1492
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:200$109: $auto$alumacc.cc:512:replace_alu$1503
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:199$105: $auto$alumacc.cc:512:replace_alu$1514
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:198$101: $auto$alumacc.cc:512:replace_alu$1525
+  creating $alu cell for $flatten\my_sum_sub.$gt$/foss/designs/chip_top/src/fp16_sum_sub.v:197$97: $auto$alumacc.cc:512:replace_alu$1536
+  creating $alu cell for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:187$92: $auto$alumacc.cc:512:replace_alu$1547
+  creating $alu cell for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:131$81: $auto$alumacc.cc:512:replace_alu$1560
+  creating $alu cell for $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:125$76: $auto$alumacc.cc:512:replace_alu$1573
+  creating $alu cell for $add$/foss/designs/chip_top/src/chip_top.v:216$21: $auto$alumacc.cc:512:replace_alu$1586
+  creating $alu cell for $flatten\my_divider.$add$/foss/designs/chip_top/src/fractional_divider.v:182$52: $auto$alumacc.cc:512:replace_alu$1589
+  creating $alu cell for $flatten\my_divider.$sub$/foss/designs/chip_top/src/fractional_divider.v:76$42: $auto$alumacc.cc:512:replace_alu$1592
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:203$122: $auto$alumacc.cc:512:replace_alu$1595
+  creating $alu cell for $flatten\my_mul.$add$/foss/designs/chip_top/src/fpmul.v:37$60: $auto$alumacc.cc:512:replace_alu$1598
+  creating $alu cell for $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:19$130: $auto$alumacc.cc:512:replace_alu$1601
+  creating $alu cell for $flatten\my_mul.\rounder0.$add$/foss/designs/chip_top/src/rounder.v:49$133: $auto$alumacc.cc:512:replace_alu$1604
+  creating $alu cell for $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:191$93: $auto$alumacc.cc:512:replace_alu$1607
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:125$75, $flatten\my_sum_sub.$ge$/foss/designs/chip_top/src/fp16_sum_sub.v:121$74: $auto$alumacc.cc:512:replace_alu$1610
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:131$80: $auto$alumacc.cc:512:replace_alu$1623
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:153$88: $auto$alumacc.cc:512:replace_alu$1626
+  creating $alu cell for $flatten\my_sum_sub.$add$/foss/designs/chip_top/src/fp16_sum_sub.v:148$86: $auto$alumacc.cc:512:replace_alu$1629
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:156$89: $auto$alumacc.cc:512:replace_alu$1632
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:197$98: $auto$alumacc.cc:512:replace_alu$1635
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:198$102: $auto$alumacc.cc:512:replace_alu$1638
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:199$106: $auto$alumacc.cc:512:replace_alu$1641
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:200$110: $auto$alumacc.cc:512:replace_alu$1644
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:201$114: $auto$alumacc.cc:512:replace_alu$1647
+  creating $alu cell for $flatten\my_sum_sub.$sub$/foss/designs/chip_top/src/fp16_sum_sub.v:202$118: $auto$alumacc.cc:512:replace_alu$1650
+  created 30 $alu and 3 $macc cells.
+
+78. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module chip_top that may be considered for resource sharing.
+  Analyzing resource sharing options for $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:132$83 ($shr):
+    Found 1 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$1572 $auto$rtlil.cc:3338:ReduceOr$1622 }.
+    Found 1 candidates: $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:126$78
+    Analyzing resource sharing with $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:126$78 ($shr):
+      Found 1 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$1585 $auto$rtlil.cc:3338:ReduceOr$1622 }.
+      Activation pattern for cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:132$83: { $auto$rtlil.cc:3338:ReduceOr$1572 $auto$rtlil.cc:3338:ReduceOr$1622 } = 2'00
+      Activation pattern for cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:126$78: { $auto$rtlil.cc:3338:ReduceOr$1585 $auto$rtlil.cc:3338:ReduceOr$1622 } = 2'01
+      According to the SAT solver this pair of cells can be shared. (Pattern only case)
+      Simplified activation pattern for cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:132$83: $auto$rtlil.cc:3338:ReduceOr$1622 = 1'0
+      Simplified activation pattern for cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:126$78: $auto$rtlil.cc:3338:ReduceOr$1622 = 1'1
+      Activation signal for $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:132$83: $auto$share.cc:1068:make_cell_activation_logic$1653
+      New cell: $auto$share.cc:669:make_supercell$1660 ($shr)
+  Analyzing resource sharing options for $auto$share.cc:669:make_supercell$1660 ($shr):
+    Found 2 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$1572 $auto$rtlil.cc:3338:ReduceOr$1585 $auto$rtlil.cc:3338:ReduceOr$1622 }.
+    No candidates found.
+Removing 2 cells in module chip_top:
+  Removing cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:126$78 ($shr).
+  Removing cell $flatten\my_sum_sub.$shr$/foss/designs/chip_top/src/fp16_sum_sub.v:132$83 ($shr).
+
+79. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~38 debug messages>
+
+80. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+81. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~376 debug messages>
+
+82. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+83. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+84. Executing OPT_DFF pass (perform DFF optimizations).
+
+85. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 10 unused cells and 59 unused wires.
+<suppressed ~20 debug messages>
+
+86. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+87. Rerunning OPT passes. (Maybe there is more to do…)
+
+88. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~376 debug messages>
+
+89. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+90. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+91. Executing OPT_DFF pass (perform DFF optimizations).
+
+92. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+93. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+94. Executing MEMORY pass.
+
+94.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+94.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+94.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+94.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+94.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+94.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+94.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+94.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+94.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+94.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+95. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+96. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~98 debug messages>
+
+97. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+98. Executing OPT_DFF pass (perform DFF optimizations).
+
+99. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 1 unused cells and 79 unused wires.
+<suppressed ~2 debug messages>
+
+100. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+101. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+102. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+103. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~149 debug messages>
+
+104. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+    Consolidated identical input bits for $mux cell $procmux$268:
+      Old ports: A=16'0000000000000000, B=16'0011111110000000, Y=$procmux$268_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$268_Y [7]
+      New connections: { $procmux$268_Y [15:8] $procmux$268_Y [6:0] } = { 2'00 $procmux$268_Y [7] $procmux$268_Y [7] $procmux$268_Y [7] $procmux$268_Y [7] $procmux$268_Y [7] $procmux$268_Y [7] 7'0000000 }
+  Optimizing cells in module \chip_top.
+Performed a total of 1 changes.
+
+105. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+106. Executing OPT_SHARE pass.
+
+107. Executing OPT_DFF pass (perform DFF optimizations).
+
+108. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+109. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~1 debug messages>
+
+110. Rerunning OPT passes. (Maybe there is more to do…)
+
+111. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~148 debug messages>
+
+112. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+113. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+114. Executing OPT_SHARE pass.
+
+115. Executing OPT_DFF pass (perform DFF optimizations).
+
+116. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+117. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+118. Rerunning OPT passes. (Maybe there is more to do…)
+
+119. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~148 debug messages>
+
+120. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+121. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+122. Executing OPT_SHARE pass.
+
+123. Executing OPT_DFF pass (perform DFF optimizations).
+
+124. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+125. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+126. Executing TECHMAP pass (map to technology primitives).
+
+126.1. Executing Verilog-2005 frontend: /foss/tools/yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/foss/tools/yosys/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /foss/tools/yosys/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+126.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$constmap:f99840ec908483ed147148e5b457b3755f98764b$paramod$a08c7934b445edfea576efdfd2b3c0748a9533c1\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using template $paramod$403a3c2fa431a154c52a6a5429d7a6260b5d144f\_90_alu for cells of type $alu.
+Using template $paramod$4ccbe221165818e15f326ddee3d1183c7924e12f\_90_alu for cells of type $alu.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_90_alu for cells of type $alu.
+Using template $paramod$a2af9b43308e3114c3b5dd3f4dc3329b2387395d\_90_alu for cells of type $alu.
+Using template $paramod$cd54e322aa4265ca236096fe4bb634aaec4e39b4\_90_alu for cells of type $alu.
+Using template $paramod$32a7b7b86c07519b7537abc18e96f0331f97914d\_90_alu for cells of type $alu.
+Using template $paramod$672a140277c71df8314410f22acc08d55222c3c7\_90_alu for cells of type $alu.
+Using template $paramod$dc04b7d98e503a7bab16fce2df70e6e2c5ca34d6\_90_alu for cells of type $alu.
+Using template $paramod$dbcdc7e8aa1a4080cea2deda6fdc8772064f4d90\_90_alu for cells of type $alu.
+Using extmapper maccmap for cells of type $macc_v2.
+  add \acc_reg [14:7] (8 bits, unsigned)
+  sub \operand_reg [14:7] (8 bits, unsigned)
+  add 9'001111111 (9 bits, unsigned)
+  add \acc_reg [14:7] (8 bits, unsigned)
+  add \operand_reg [14:7] (8 bits, unsigned)
+  add 8'10000001 (8 bits, unsigned)
+  add { 1'1 \acc_reg [6:0] } * { 1'1 \operand_reg [6:0] } (8x8 bits, unsigned)
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$70d30c21ff772b34d0d1da2801fbd781dc3c70e4\_90_pmux for cells of type $pmux.
+Using template $paramod$0d149ffe75563ef6fcc1a3dddc59d00af28651a7\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$30a6a3eda691e4e16264fbb83b0421b58195fe41\_90_pmux for cells of type $pmux.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000010000 for cells of type $fa.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_90_alu for cells of type $alu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001001 for cells of type $fa.
+Using template $paramod$d2fa05d38998afabc6d4f34471305d0af4b8b2df\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001001 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000100 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~2736 debug messages>
+
+127. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~2024 debug messages>
+
+128. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~534 debug messages>
+Removed a total of 178 cells.
+
+129. Executing OPT_DFF pass (perform DFF optimizations).
+
+130. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 190 unused cells and 1749 unused wires.
+<suppressed ~191 debug messages>
+
+131. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+132. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+133. Executing OPT_DFF pass (perform DFF optimizations).
+
+134. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+135. Executing ABC pass (technology mapping using ABC).
+
+135.1. Extracting gate netlist of module `\chip_top' to `<abc-temp-dir>/input.blif'..
+
+135.1.1. Executed ABC.
+Extracted 2240 gates and 2404 wires to a netlist network with 162 inputs and 139 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 21 2025 19:49:10)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-gfpD42/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+135.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       96
+ABC RESULTS:            ANDNOT cells:      590
+ABC RESULTS:               MUX cells:      378
+ABC RESULTS:              NAND cells:       49
+ABC RESULTS:               NOR cells:      126
+ABC RESULTS:               NOT cells:      119
+ABC RESULTS:                OR cells:      273
+ABC RESULTS:             ORNOT cells:      112
+ABC RESULTS:              XNOR cells:       81
+ABC RESULTS:               XOR cells:      227
+ABC RESULTS:        internal signals:     2103
+ABC RESULTS:           input signals:      162
+ABC RESULTS:          output signals:      139
+Removing temp directory.
+Removing global temp directory.
+
+136. Executing OPT pass (performing simple optimizations).
+
+136.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+<suppressed ~59 debug messages>
+
+136.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+<suppressed ~60 debug messages>
+Removed a total of 20 cells.
+
+136.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+136.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 4 unused cells and 1004 unused wires.
+<suppressed ~35 debug messages>
+
+136.5. Finished fast OPT passes.
+
+137. Executing HIERARCHY pass (managing design hierarchy).
+
+137.1. Analyzing design hierarchy..
+Top module:  \chip_top
+
+137.2. Analyzing design hierarchy..
+Top module:  \chip_top
+Removed 0 unused modules.
+
+138. Executing CHECK pass (checking for obvious problems).
+Checking module chip_top...
+Found and reported 0 problems.
+
+139. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2070 wires
+     2392 wire bits
+       83 public wires
+      386 public wire bits
+        6 ports
+        6 port bits
+     2217 cells
+      575   $_ANDNOT_
+       96   $_AND_
+      163   $_DFFE_PP0P_
+       18   $_DFF_PP0_
+        4   $_DFF_PP1_
+      378   $_MUX_
+       49   $_NAND_
+      125   $_NOR_
+      115   $_NOT_
+      109   $_ORNOT_
+      273   $_OR_
+       80   $_XNOR_
+      227   $_XOR_
+        5   $scopeinfo
+
+140. Generating Graphviz representation of design.
+Writing dot description to `/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/primitive_techmap.dot'.
+Dumping module chip_top to page 1.
+
+141. Executing OPT pass (performing simple optimizations).
+
+141.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+141.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+141.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \chip_top..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+141.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \chip_top.
+Performed a total of 0 changes.
+
+141.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\chip_top'.
+Removed a total of 0 cells.
+
+141.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+141.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+
+141.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module chip_top.
+
+141.9. Finished fast OPT passes. (There is nothing left to do.)
+
+142. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 5 unused cells and 34 unused wires.
+<suppressed ~39 debug messages>
+{
+   "creator": "Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/tmp/ff09352a00c8484e934d0f3863ac838c.lib ",
+   "modules": {
+      "\\chip_top": {
+         "num_wires":         2036,
+         "num_wire_bits":     2221,
+         "num_pub_wires":     49,
+         "num_pub_wire_bits": 215,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2212,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 575,
+            "$_AND_": 96,
+            "$_DFFE_PP0P_": 163,
+            "$_DFF_PP0_": 18,
+            "$_DFF_PP1_": 4,
+            "$_MUX_": 378,
+            "$_NAND_": 49,
+            "$_NOR_": 125,
+            "$_NOT_": 115,
+            "$_ORNOT_": 109,
+            "$_OR_": 273,
+            "$_XNOR_": 80,
+            "$_XOR_": 227
+         }
+      }
+   },
+      "design": {
+         "num_wires":         2036,
+         "num_wire_bits":     2221,
+         "num_pub_wires":     49,
+         "num_pub_wire_bits": 215,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2212,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 575,
+            "$_AND_": 96,
+            "$_DFFE_PP0P_": 163,
+            "$_DFF_PP0_": 18,
+            "$_DFF_PP1_": 4,
+            "$_MUX_": 378,
+            "$_NAND_": 49,
+            "$_NOR_": 125,
+            "$_NOT_": 115,
+            "$_ORNOT_": 109,
+            "$_OR_": 273,
+            "$_XNOR_": 80,
+            "$_XOR_": 227
+         }
+      }
+}
+
+143. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2036 wires
+     2221 wire bits
+       49 public wires
+      215 public wire bits
+        6 ports
+        6 port bits
+     2212 cells
+      575   $_ANDNOT_
+       96   $_AND_
+      163   $_DFFE_PP0P_
+       18   $_DFF_PP0_
+        4   $_DFF_PP1_
+      378   $_MUX_
+       49   $_NAND_
+      125   $_NOR_
+      115   $_NOT_
+      109   $_ORNOT_
+      273   $_OR_
+       80   $_XNOR_
+      227   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFFE_PP0P_ is unknown!
+   Area for cell type $_DFF_PP0_ is unknown!
+   Area for cell type $_DFF_PP1_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+[INFO] Applying tri-state buffer mapping from '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v'…
+
+144. Executing TECHMAP pass (map to technology primitives).
+
+144.1. Executing Verilog-2005 frontend: /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+verilog frontend filename /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Generating RTLIL representation for module `\$_TBUF_'.
+Successfully finished Verilog frontend.
+
+144.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+145. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+[INFO] Applying latch mapping from '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v'…
+
+146. Executing TECHMAP pass (map to technology primitives).
+
+146.1. Executing Verilog-2005 frontend: /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+verilog frontend filename /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+146.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+147. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+148. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    unmapped dff cell: $_DFFE_PP_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+148.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\chip_top':
+  mapped 181 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+  mapped 4 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+{
+   "creator": "Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/tmp/ff09352a00c8484e934d0f3863ac838c.lib ",
+   "modules": {
+      "\\chip_top": {
+         "num_wires":         2384,
+         "num_wire_bits":     2569,
+         "num_pub_wires":     49,
+         "num_pub_wire_bits": 215,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2560,
+         "num_submodules":       0,
+         "area":              4860.912000,
+         "sequential_area":    4860.912000,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 575,
+            "$_AND_": 96,
+            "$_MUX_": 541,
+            "$_NAND_": 49,
+            "$_NOR_": 125,
+            "$_NOT_": 300,
+            "$_ORNOT_": 109,
+            "$_OR_": 273,
+            "$_XNOR_": 80,
+            "$_XOR_": 227,
+            "sky130_fd_sc_hd__dfrtp_2": 181,
+            "sky130_fd_sc_hd__dfstp_2": 4
+         }
+      }
+   },
+      "design": {
+         "num_wires":         2384,
+         "num_wire_bits":     2569,
+         "num_pub_wires":     49,
+         "num_pub_wire_bits": 215,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         2560,
+         "num_submodules":       0,
+         "area":              4860.912000,
+         "sequential_area":    4860.912000,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 575,
+            "$_AND_": 96,
+            "$_MUX_": 541,
+            "$_NAND_": 49,
+            "$_NOR_": 125,
+            "$_NOT_": 300,
+            "$_ORNOT_": 109,
+            "$_OR_": 273,
+            "$_XNOR_": 80,
+            "$_XOR_": 227,
+            "sky130_fd_sc_hd__dfrtp_2": 181,
+            "sky130_fd_sc_hd__dfstp_2": 4
+         }
+      }
+}
+
+149. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2384        - wires
+     2569        - wire bits
+       49        - public wires
+      215        - public wire bits
+        6        - ports
+        6        - port bits
+     2560 4.86E+03 cells
+      575        -   $_ANDNOT_
+       96        -   $_AND_
+      541        -   $_MUX_
+       49        -   $_NAND_
+      125        -   $_NOR_
+      300        -   $_NOT_
+      109        -   $_ORNOT_
+      273        -   $_OR_
+       80        -   $_XNOR_
+      227        -   $_XOR_
+      181 4.76E+03   sky130_fd_sc_hd__dfrtp_2
+        4  105.101   sky130_fd_sc_hd__dfstp_2
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+   Chip area for module '\chip_top': 4860.912000
+     of which used for sequential elements: 4860.912000 (100.00%)
+
+[INFO] Using generated ABC script '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/AREA_0.abc'…
+
+150. Executing ABC pass (technology mapping using ABC).
+
+150.1. Extracting gate netlist of module `\chip_top' to `/tmp/yosys-abc-vxNcYD/input.blif'..
+
+150.1.1. Executed ABC.
+Extracted 2375 gates and 2558 wires to a netlist network with 183 inputs and 360 outputs.
+Running ABC script: /tmp/yosys-abc-vxNcYD/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 21 2025 19:49:10)
+ABC: abc 01> empty
+ABC: abc 01> source /tmp/yosys-abc-vxNcYD/abc.script
+ABC: + read_blif /tmp/yosys-abc-vxNcYD/input.blif 
+ABC: + read_lib -w /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/tmp/ff09352a00c8484e934d0f3863ac838c.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.09 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/tmp/ff09352a00c8484e934d0f3863ac838c.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.12 sec
+ABC: Memory =    9.54 MB. Time =     0.12 sec
+ABC: Warning: Detected 2 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/synthesis.abc.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2/Y".
+ABC: Setting output load to be 33.442001.
+ABC: + source /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/06-yosys-synthesis/AREA_0.abc 
+ABC: Error: The network is combinational.
+ABC: Cannot find the default PI driving cell (sky130_fd_sc_hd__inv_2/Y) in the library.
+ABC: WireLoad = "none"  Gates =   1495 ( 16.5 %)   Cap = 14.3 ff (  4.8 %)   Area =    12867.34 ( 74.5 %)   Delay = 10781.80 ps  (  5.2 %)               
+ABC: Path  0 --      87 : 0    6 pi                        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  13.3 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --    1668 : 4    3 sky130_fd_sc_hd__a2bb2o_2 A =  11.26  Df =9061.9 -250.4 ps  S =  60.1 ps  Cin =  1.7 ff  Cout =   7.7 ff  Cmax = 300.3 ff  G =  432  
+ABC: Path  2 --    1719 : 4    1 sky130_fd_sc_hd__or4_2    A =   8.76  Df =9702.1 -785.4 ps  S =  90.9 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax = 310.4 ff  G =  100  
+ABC: Path  3 --    1721 : 4    7 sky130_fd_sc_hd__or4_2    A =   8.76  Df =10396.6-1181.6 ps  S = 151.8 ps  Cin =  1.5 ff  Cout =  17.1 ff  Cmax = 310.4 ff  G = 1094  
+ABC: Path  4 --    1723 : 5    1 sky130_fd_sc_hd__a32o_2   A =  11.26  Df =10781.8 -715.8 ps  S = 209.2 ps  Cin =  2.3 ff  Cout =  33.4 ff  Cmax = 264.6 ff  G = 1430  
+ABC: Start-point = pi86 (\my_sum_sub.cm_exp [2]).  End-point = po128 ($auto$rtlil.cc:3580:MuxGate$9693).
+ABC: netlist                       : i/o =  183/  360  lat =    0  nd =  1495  edge =   3904  area =12868.65  delay =26.00  lev = 26
+ABC: + write_blif /tmp/yosys-abc-vxNcYD/output.blif 
+ABC:                                                                                
+
+150.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111o_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a211o_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a21bo_2 cells:       12
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:       49
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:       50
+ABC RESULTS:   sky130_fd_sc_hd__a221o_2 cells:       36
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a22o_2 cells:       46
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_2 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a2bb2o_2 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:       37
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__a32o_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__a41o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and2_2 cells:       57
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:       51
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:       51
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__and4_2 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__and4b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__and4bb_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:      246
+ABC RESULTS:   sky130_fd_sc_hd__mux2_1 cells:      107
+ABC RESULTS:   sky130_fd_sc_hd__mux4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:       85
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_2 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__nand3_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nand4_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:      105
+ABC RESULTS:   sky130_fd_sc_hd__nor3_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nor4b_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o2111a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:       18
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o21a_2 cells:       44
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_2 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o221a_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o22a_2 cells:       26
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2a_2 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__o311a_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o311ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o31a_2 cells:       11
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o32a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o41a_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:       58
+ABC RESULTS:   sky130_fd_sc_hd__or3_2 cells:       23
+ABC RESULTS:   sky130_fd_sc_hd__or3b_2 cells:       16
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:       27
+ABC RESULTS:   sky130_fd_sc_hd__or4b_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__or4bb_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:       76
+ABC RESULTS:   sky130_fd_sc_hd__xor2_2 cells:       36
+ABC RESULTS:        internal signals:     2015
+ABC RESULTS:           input signals:      183
+ABC RESULTS:          output signals:      360
+Removing temp directory.
+Removing global temp directory.
+
+151. Executing SETUNDEF pass (replace undef values with defined constants).
+
+152. Executing HILOMAP pass (mapping to constant drivers).
+
+153. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+154. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \chip_top..
+Removed 1 unused cells and 2563 unused wires.
+<suppressed ~26 debug messages>
+
+155. Executing INSBUF pass (insert buffer cells for connected wires).
+
+156. Executing CHECK pass (checking for obvious problems).
+Checking module chip_top...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)",
+   "invocation": "stat -json -liberty /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/tmp/ff09352a00c8484e934d0f3863ac838c.lib ",
+   "modules": {
+      "\\chip_top": {
+         "num_wires":         1685,
+         "num_wire_bits":     1685,
+         "num_pub_wires":     191,
+         "num_pub_wire_bits": 191,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1680,
+         "num_submodules":       0,
+         "area":              17728.252800,
+         "sequential_area":    4860.912000,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 2,
+            "sky130_fd_sc_hd__a211o_2": 9,
+            "sky130_fd_sc_hd__a211oi_2": 3,
+            "sky130_fd_sc_hd__a21bo_2": 12,
+            "sky130_fd_sc_hd__a21boi_2": 1,
+            "sky130_fd_sc_hd__a21o_2": 49,
+            "sky130_fd_sc_hd__a21oi_2": 50,
+            "sky130_fd_sc_hd__a221o_2": 36,
+            "sky130_fd_sc_hd__a221oi_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 46,
+            "sky130_fd_sc_hd__a22oi_2": 6,
+            "sky130_fd_sc_hd__a2bb2o_2": 10,
+            "sky130_fd_sc_hd__a31o_2": 37,
+            "sky130_fd_sc_hd__a31oi_2": 5,
+            "sky130_fd_sc_hd__a32o_2": 11,
+            "sky130_fd_sc_hd__a41o_2": 1,
+            "sky130_fd_sc_hd__a41oi_2": 1,
+            "sky130_fd_sc_hd__and2_2": 57,
+            "sky130_fd_sc_hd__and2b_2": 51,
+            "sky130_fd_sc_hd__and3_2": 51,
+            "sky130_fd_sc_hd__and3b_2": 7,
+            "sky130_fd_sc_hd__and4_2": 18,
+            "sky130_fd_sc_hd__and4b_2": 3,
+            "sky130_fd_sc_hd__and4bb_2": 5,
+            "sky130_fd_sc_hd__dfrtp_2": 181,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__inv_2": 246,
+            "sky130_fd_sc_hd__mux2_1": 107,
+            "sky130_fd_sc_hd__mux4_2": 1,
+            "sky130_fd_sc_hd__nand2_2": 85,
+            "sky130_fd_sc_hd__nand2b_2": 27,
+            "sky130_fd_sc_hd__nand3_2": 5,
+            "sky130_fd_sc_hd__nand3b_2": 2,
+            "sky130_fd_sc_hd__nand4_2": 4,
+            "sky130_fd_sc_hd__nor2_2": 105,
+            "sky130_fd_sc_hd__nor3_2": 9,
+            "sky130_fd_sc_hd__nor3b_2": 3,
+            "sky130_fd_sc_hd__nor4_2": 2,
+            "sky130_fd_sc_hd__nor4b_2": 3,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o2111ai_2": 1,
+            "sky130_fd_sc_hd__o211a_2": 18,
+            "sky130_fd_sc_hd__o211ai_2": 2,
+            "sky130_fd_sc_hd__o21a_2": 44,
+            "sky130_fd_sc_hd__o21ai_2": 27,
+            "sky130_fd_sc_hd__o21ba_2": 11,
+            "sky130_fd_sc_hd__o21bai_2": 5,
+            "sky130_fd_sc_hd__o221a_2": 9,
+            "sky130_fd_sc_hd__o22a_2": 26,
+            "sky130_fd_sc_hd__o22ai_2": 3,
+            "sky130_fd_sc_hd__o2bb2a_2": 7,
+            "sky130_fd_sc_hd__o311a_2": 4,
+            "sky130_fd_sc_hd__o311ai_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 11,
+            "sky130_fd_sc_hd__o31ai_2": 4,
+            "sky130_fd_sc_hd__o32a_2": 1,
+            "sky130_fd_sc_hd__o32ai_2": 1,
+            "sky130_fd_sc_hd__o41a_2": 1,
+            "sky130_fd_sc_hd__or2_2": 58,
+            "sky130_fd_sc_hd__or3_2": 23,
+            "sky130_fd_sc_hd__or3b_2": 16,
+            "sky130_fd_sc_hd__or4_2": 27,
+            "sky130_fd_sc_hd__or4b_2": 9,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 76,
+            "sky130_fd_sc_hd__xor2_2": 36
+         }
+      }
+   },
+      "design": {
+         "num_wires":         1685,
+         "num_wire_bits":     1685,
+         "num_pub_wires":     191,
+         "num_pub_wire_bits": 191,
+         "num_ports":         6,
+         "num_port_bits":     6,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1680,
+         "num_submodules":       0,
+         "area":              17728.252800,
+         "sequential_area":    4860.912000,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a2111o_2": 2,
+            "sky130_fd_sc_hd__a211o_2": 9,
+            "sky130_fd_sc_hd__a211oi_2": 3,
+            "sky130_fd_sc_hd__a21bo_2": 12,
+            "sky130_fd_sc_hd__a21boi_2": 1,
+            "sky130_fd_sc_hd__a21o_2": 49,
+            "sky130_fd_sc_hd__a21oi_2": 50,
+            "sky130_fd_sc_hd__a221o_2": 36,
+            "sky130_fd_sc_hd__a221oi_2": 1,
+            "sky130_fd_sc_hd__a22o_2": 46,
+            "sky130_fd_sc_hd__a22oi_2": 6,
+            "sky130_fd_sc_hd__a2bb2o_2": 10,
+            "sky130_fd_sc_hd__a31o_2": 37,
+            "sky130_fd_sc_hd__a31oi_2": 5,
+            "sky130_fd_sc_hd__a32o_2": 11,
+            "sky130_fd_sc_hd__a41o_2": 1,
+            "sky130_fd_sc_hd__a41oi_2": 1,
+            "sky130_fd_sc_hd__and2_2": 57,
+            "sky130_fd_sc_hd__and2b_2": 51,
+            "sky130_fd_sc_hd__and3_2": 51,
+            "sky130_fd_sc_hd__and3b_2": 7,
+            "sky130_fd_sc_hd__and4_2": 18,
+            "sky130_fd_sc_hd__and4b_2": 3,
+            "sky130_fd_sc_hd__and4bb_2": 5,
+            "sky130_fd_sc_hd__dfrtp_2": 181,
+            "sky130_fd_sc_hd__dfstp_2": 4,
+            "sky130_fd_sc_hd__inv_2": 246,
+            "sky130_fd_sc_hd__mux2_1": 107,
+            "sky130_fd_sc_hd__mux4_2": 1,
+            "sky130_fd_sc_hd__nand2_2": 85,
+            "sky130_fd_sc_hd__nand2b_2": 27,
+            "sky130_fd_sc_hd__nand3_2": 5,
+            "sky130_fd_sc_hd__nand3b_2": 2,
+            "sky130_fd_sc_hd__nand4_2": 4,
+            "sky130_fd_sc_hd__nor2_2": 105,
+            "sky130_fd_sc_hd__nor3_2": 9,
+            "sky130_fd_sc_hd__nor3b_2": 3,
+            "sky130_fd_sc_hd__nor4_2": 2,
+            "sky130_fd_sc_hd__nor4b_2": 3,
+            "sky130_fd_sc_hd__o2111a_2": 2,
+            "sky130_fd_sc_hd__o2111ai_2": 1,
+            "sky130_fd_sc_hd__o211a_2": 18,
+            "sky130_fd_sc_hd__o211ai_2": 2,
+            "sky130_fd_sc_hd__o21a_2": 44,
+            "sky130_fd_sc_hd__o21ai_2": 27,
+            "sky130_fd_sc_hd__o21ba_2": 11,
+            "sky130_fd_sc_hd__o21bai_2": 5,
+            "sky130_fd_sc_hd__o221a_2": 9,
+            "sky130_fd_sc_hd__o22a_2": 26,
+            "sky130_fd_sc_hd__o22ai_2": 3,
+            "sky130_fd_sc_hd__o2bb2a_2": 7,
+            "sky130_fd_sc_hd__o311a_2": 4,
+            "sky130_fd_sc_hd__o311ai_2": 1,
+            "sky130_fd_sc_hd__o31a_2": 11,
+            "sky130_fd_sc_hd__o31ai_2": 4,
+            "sky130_fd_sc_hd__o32a_2": 1,
+            "sky130_fd_sc_hd__o32ai_2": 1,
+            "sky130_fd_sc_hd__o41a_2": 1,
+            "sky130_fd_sc_hd__or2_2": 58,
+            "sky130_fd_sc_hd__or3_2": 23,
+            "sky130_fd_sc_hd__or3b_2": 16,
+            "sky130_fd_sc_hd__or4_2": 27,
+            "sky130_fd_sc_hd__or4b_2": 9,
+            "sky130_fd_sc_hd__or4bb_2": 1,
+            "sky130_fd_sc_hd__xnor2_2": 76,
+            "sky130_fd_sc_hd__xor2_2": 36
+         }
+      }
+}
+
+157. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     1685        - wires
+     1685        - wire bits
+      191        - public wires
+      191        - public wire bits
+        6        - ports
+        6        - port bits
+     1680 1.77E+04 cells
+        2   25.024   sky130_fd_sc_hd__a2111o_2
+        9   90.086   sky130_fd_sc_hd__a211o_2
+        3   37.536   sky130_fd_sc_hd__a211oi_2
+       12  120.115   sky130_fd_sc_hd__a21bo_2
+        1   11.261   sky130_fd_sc_hd__a21boi_2
+       49  429.162   sky130_fd_sc_hd__a21o_2
+       50   437.92   sky130_fd_sc_hd__a21oi_2
+       36  405.389   sky130_fd_sc_hd__a221o_2
+        1   15.014   sky130_fd_sc_hd__a221oi_2
+       46  460.442   sky130_fd_sc_hd__a22o_2
+        6   75.072   sky130_fd_sc_hd__a22oi_2
+       10  112.608   sky130_fd_sc_hd__a2bb2o_2
+       37  324.061   sky130_fd_sc_hd__a31o_2
+        5    62.56   sky130_fd_sc_hd__a31oi_2
+       11  123.869   sky130_fd_sc_hd__a32o_2
+        1   11.261   sky130_fd_sc_hd__a41o_2
+        1   16.266   sky130_fd_sc_hd__a41oi_2
+       57   427.91   sky130_fd_sc_hd__and2_2
+       51  446.678   sky130_fd_sc_hd__and2b_2
+       51  382.867   sky130_fd_sc_hd__and3_2
+        7   70.067   sky130_fd_sc_hd__and3b_2
+       18  180.173   sky130_fd_sc_hd__and4_2
+        3   33.782   sky130_fd_sc_hd__and4b_2
+        5    62.56   sky130_fd_sc_hd__and4bb_2
+      181 4.76E+03   sky130_fd_sc_hd__dfrtp_2
+        4  105.101   sky130_fd_sc_hd__dfstp_2
+      246  923.386   sky130_fd_sc_hd__inv_2
+      107  1.2E+03   sky130_fd_sc_hd__mux2_1
+        1   22.522   sky130_fd_sc_hd__mux4_2
+       85   531.76   sky130_fd_sc_hd__nand2_2
+       27  236.477   sky130_fd_sc_hd__nand2b_2
+        5   50.048   sky130_fd_sc_hd__nand3_2
+        2   22.522   sky130_fd_sc_hd__nand3b_2
+        4   50.048   sky130_fd_sc_hd__nand4_2
+      105   656.88   sky130_fd_sc_hd__nor2_2
+        9   90.086   sky130_fd_sc_hd__nor3_2
+        3   37.536   sky130_fd_sc_hd__nor3b_2
+        2   25.024   sky130_fd_sc_hd__nor4_2
+        3   45.043   sky130_fd_sc_hd__nor4b_2
+        2   25.024   sky130_fd_sc_hd__o2111a_2
+        1   15.014   sky130_fd_sc_hd__o2111ai_2
+       18  180.173   sky130_fd_sc_hd__o211a_2
+        2   25.024   sky130_fd_sc_hd__o211ai_2
+       44   385.37   sky130_fd_sc_hd__o21a_2
+       27  236.477   sky130_fd_sc_hd__o21ai_2
+       11  110.106   sky130_fd_sc_hd__o21ba_2
+        5   56.304   sky130_fd_sc_hd__o21bai_2
+        9  101.347   sky130_fd_sc_hd__o221a_2
+       26   260.25   sky130_fd_sc_hd__o22a_2
+        3   37.536   sky130_fd_sc_hd__o22ai_2
+        7   78.826   sky130_fd_sc_hd__o2bb2a_2
+        4   45.043   sky130_fd_sc_hd__o311a_2
+        1   16.266   sky130_fd_sc_hd__o311ai_2
+       11  110.106   sky130_fd_sc_hd__o31a_2
+        4   50.048   sky130_fd_sc_hd__o31ai_2
+        1   11.261   sky130_fd_sc_hd__o32a_2
+        1   16.266   sky130_fd_sc_hd__o32ai_2
+        1   12.512   sky130_fd_sc_hd__o41a_2
+       58  362.848   sky130_fd_sc_hd__or2_2
+       23  172.666   sky130_fd_sc_hd__or3_2
+       16  140.134   sky130_fd_sc_hd__or3b_2
+       27  236.477   sky130_fd_sc_hd__or4_2
+        9   90.086   sky130_fd_sc_hd__or4b_2
+        1   12.512   sky130_fd_sc_hd__or4bb_2
+       76 1.24E+03   sky130_fd_sc_hd__xnor2_2
+       36  585.562   sky130_fd_sc_hd__xor2_2
+
+   Chip area for module '\chip_top': 17728.252800
+     of which used for sequential elements: 4860.912000 (27.42%)
+
+158. Executing Verilog backend.
+Dumping module `\chip_top'.
+
+159. Executing JSON backend.

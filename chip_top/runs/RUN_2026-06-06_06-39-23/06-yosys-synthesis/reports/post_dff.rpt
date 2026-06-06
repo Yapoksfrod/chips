@@ -1,0 +1,41 @@
+149. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        |        +-Local Area, excluding submodules.
+        |        | 
+     2384        - wires
+     2569        - wire bits
+       49        - public wires
+      215        - public wire bits
+        6        - ports
+        6        - port bits
+     2560 4.86E+03 cells
+      575        -   $_ANDNOT_
+       96        -   $_AND_
+      541        -   $_MUX_
+       49        -   $_NAND_
+      125        -   $_NOR_
+      300        -   $_NOT_
+      109        -   $_ORNOT_
+      273        -   $_OR_
+       80        -   $_XNOR_
+      227        -   $_XOR_
+      181 4.76E+03   sky130_fd_sc_hd__dfrtp_2
+        4  105.101   sky130_fd_sc_hd__dfstp_2
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
+   Chip area for module '\chip_top': 4860.912000
+     of which used for sequential elements: 4860.912000 (100.00%)
+

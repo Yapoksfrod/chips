@@ -1,0 +1,1 @@
+yosys -y /usr/local/lib/python3.12/dist-packages/librelane/scripts/pyosys/json_header.py -- --config-in /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/05-yosys-jsonheader/config.json --extra-in /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/05-yosys-jsonheader/extra.json --output /foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/05-yosys-jsonheader/chip_top.h.json

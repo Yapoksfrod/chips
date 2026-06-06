@@ -1,0 +1,10 @@
+
+20. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_shift' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\clr_shift' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_r' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_y' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\sel_rx' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\clr_counter' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.\en_counter' from process `$paramod\fractional_divider\N=s32'00000000000000000000000000001000.$proc$/foss/designs/chip_top/src/fractional_divider.v:110$46'.
+No latch inferred for signal `\rounder.\mant_rounded' from process `\rounder.$proc$/foss/designs/chip_top/src/rounder.v:24$131'.

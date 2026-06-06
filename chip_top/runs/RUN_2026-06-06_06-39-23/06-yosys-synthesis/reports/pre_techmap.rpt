@@ -1,0 +1,41 @@
+143. Printing statistics.
+
+=== chip_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     2036 wires
+     2221 wire bits
+       49 public wires
+      215 public wire bits
+        6 ports
+        6 port bits
+     2212 cells
+      575   $_ANDNOT_
+       96   $_AND_
+      163   $_DFFE_PP0P_
+       18   $_DFF_PP0_
+        4   $_DFF_PP1_
+      378   $_MUX_
+       49   $_NAND_
+      125   $_NOR_
+      115   $_NOT_
+      109   $_ORNOT_
+      273   $_OR_
+       80   $_XNOR_
+      227   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFFE_PP0P_ is unknown!
+   Area for cell type $_DFF_PP0_ is unknown!
+   Area for cell type $_DFF_PP1_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
