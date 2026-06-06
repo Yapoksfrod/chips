@@ -1,0 +1,1362 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+
+-- Running command `
+  read_verilog src/fp16_sum_sub.v;
+  synth -top fp16_sum_sub;
+  dfflibmap -liberty /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+  abc -liberty /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib;
+  stat;
+  write_verilog synth_fp16_sum_sub.v
+' --
+
+1. Executing Verilog-2005 frontend: src/fp16_sum_sub.v
+Parsing Verilog input from `src/fp16_sum_sub.v' to AST representation.
+verilog frontend filename src/fp16_sum_sub.v
+Generating RTLIL representation for module `\fp16_sum_sub'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH pass.
+
+2.1. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1.1. Analyzing design hierarchy..
+Top module:  \fp16_sum_sub
+
+2.1.2. Analyzing design hierarchy..
+Top module:  \fp16_sum_sub
+Removed 0 unused modules.
+
+2.2. Executing PROC pass (convert processes to netlists).
+
+2.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$src/fp16_sum_sub.v:81$6 in module fp16_sum_sub.
+Marked 26 switch rules as full_case in process $proc$src/fp16_sum_sub.v:81$6 in module fp16_sum_sub.
+Removed a total of 1 dead cases.
+
+2.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 3 redundant assignments.
+Promoted 4 assignments to connections.
+
+2.2.4. Executing PROC_INIT pass (extract init attributes).
+
+2.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+
+2.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~26 debug messages>
+
+2.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+     1/70: $19\norm.uf_f[0:0]
+     2/70: $20\norm.e[7:0]
+     3/70: $18\norm.uf_f[0:0]
+     4/70: $17\norm.uf_f[0:0]
+     5/70: $19\norm.e[7:0]
+     6/70: $12\norm.m[8:0]
+     7/70: $18\norm.e[7:0]
+     8/70: $16\norm.uf_f[0:0]
+     9/70: $15\norm.uf_f[0:0]
+    10/70: $17\norm.e[7:0]
+    11/70: $11\norm.m[8:0]
+    12/70: $16\norm.e[7:0]
+    13/70: $14\norm.uf_f[0:0]
+    14/70: $13\norm.uf_f[0:0]
+    15/70: $15\norm.e[7:0]
+    16/70: $10\norm.m[8:0]
+    17/70: $14\norm.e[7:0]
+    18/70: $12\norm.uf_f[0:0]
+    19/70: $11\norm.uf_f[0:0]
+    20/70: $13\norm.e[7:0]
+    21/70: $9\norm.m[8:0]
+    22/70: $12\norm.e[7:0]
+    23/70: $10\norm.uf_f[0:0]
+    24/70: $9\norm.uf_f[0:0]
+    25/70: $11\norm.e[7:0]
+    26/70: $8\norm.m[8:0]
+    27/70: $10\norm.e[7:0]
+    28/70: $8\norm.uf_f[0:0]
+    29/70: $7\norm.uf_f[0:0]
+    30/70: $9\norm.e[7:0]
+    31/70: $7\norm.m[8:0]
+    32/70: $8\norm.e[7:0]
+    33/70: $6\norm.uf_f[0:0]
+    34/70: $5\norm.uf_f[0:0]
+    35/70: $7\norm.e[7:0]
+    36/70: $6\norm.m[8:0]
+    37/70: $4\norm.uf_f[0:0]
+    38/70: $6\norm.e[7:0]
+    39/70: $5\norm.m[8:0]
+    40/70: $5\norm.e[7:0]
+    41/70: $5\norm.of_f[0:0]
+    42/70: $4\norm.of_f[0:0]
+    43/70: $4\norm.e[7:0]
+    44/70: $4\norm.m[8:0]
+    45/70: $3\norm.uf_f[0:0]
+    46/70: $3\norm.of_f[0:0]
+    47/70: $3\norm.e[7:0]
+    48/70: $3\norm.m[8:0]
+    49/70: $2\norm.uf_f[0:0]
+    50/70: $2\norm.of_f[0:0]
+    51/70: $2\norm.e[7:0]
+    52/70: $2\norm.m[8:0]
+    53/70: $1\norm.uf_f[0:0]
+    54/70: $1\norm.of_f[0:0]
+    55/70: $1\norm.e[7:0]
+    56/70: $1\norm.m[8:0]
+    57/70: $0\underflow[0:0]
+    58/70: $0\overflow[0:0]
+    59/70: $0\done[0:0]
+    60/70: $0\cm_exp[7:0]
+    61/70: $0\cm_sign[0:0]
+    62/70: $0\cm_mant[8:0]
+    63/70: $0\al_b_larger[0:0]
+    64/70: $0\al_sb_eff[0:0]
+    65/70: $0\al_sa[0:0]
+    66/70: $0\al_mb[7:0]
+    67/70: $0\al_ma[7:0]
+    68/70: $0\al_exp[7:0]
+    69/70: $0\state[1:0]
+    70/70: $0\result[15:0]
+
+2.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+2.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\fp16_sum_sub.\result' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$698' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\done' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$701' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\overflow' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$704' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\underflow' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$707' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\state' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$710' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_exp' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$713' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_ma' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$716' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_mb' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$719' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_sa' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$722' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_sb_eff' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$725' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\al_b_larger' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$728' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_mant' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$731' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_sign' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$734' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\cm_exp' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $adff cell `$procdff$737' with positive edge clock and positive level reset.
+Creating register for signal `\fp16_sum_sub.\norm.m' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $dff cell `$procdff$742' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.e' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $dff cell `$procdff$747' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.of_f' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $dff cell `$procdff$752' with positive edge clock.
+Creating register for signal `\fp16_sum_sub.\norm.uf_f' using process `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+  created $dff cell `$procdff$757' with positive edge clock.
+
+2.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 26 empty switches in `\fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+Removing empty process `fp16_sum_sub.$proc$src/fp16_sum_sub.v:81$6'.
+Cleaned up 26 empty switches.
+
+2.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~112 debug messages>
+
+2.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 38 unused cells and 299 unused wires.
+<suppressed ~43 debug messages>
+
+2.5. Executing CHECK pass (checking for obvious problems).
+Checking module fp16_sum_sub...
+Found and reported 0 problems.
+
+2.6. Executing OPT pass (performing simple optimizations).
+
+2.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+<suppressed ~189 debug messages>
+Removed a total of 63 cells.
+
+2.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$185: { $10\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $10\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$185: $10\norm.m[8:0] -> { $10\norm.m[8:0] [8] 1'1 $10\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$246: { $9\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $9\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$246: $9\norm.m[8:0] -> { $9\norm.m[8:0] [8] 1'1 $9\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$307: { $8\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $8\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$307: $8\norm.m[8:0] -> { $8\norm.m[8:0] [8] 1'1 $8\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$368: { $7\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $7\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$368: $7\norm.m[8:0] -> { $7\norm.m[8:0] [8] 1'1 $7\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$429: { $6\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $6\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$429: $6\norm.m[8:0] -> { $6\norm.m[8:0] [8] 1'1 $6\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$490: { $4\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $4\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$490: $4\norm.m[8:0] -> { $4\norm.m[8:0] [8] 1'1 $4\norm.m[8:0] [6:0] }
+      Replacing known input bits on port A of cell $procmux$562: \cm_mant -> { 1'0 \cm_mant [7:0] }
+      Replacing known input bits on port B of cell $procmux$562: { 1'0 \cm_mant [8:1] } -> { 2'01 \cm_mant [7:1] }
+      Replacing known input bits on port A of cell $procmux$124: { $11\norm.m[8:0] [7:0] 1'0 } -> { 1'0 $11\norm.m[8:0] [6:0] 1'0 }
+      Replacing known input bits on port B of cell $procmux$124: $11\norm.m[8:0] -> { $11\norm.m[8:0] [8] 1'1 $11\norm.m[8:0] [6:0] }
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$165.
+    dead port 1/2 on $mux $procmux$168.
+    dead port 2/2 on $mux $procmux$170.
+    dead port 1/2 on $mux $procmux$199.
+    dead port 1/2 on $mux $procmux$201.
+    dead port 1/2 on $mux $procmux$204.
+    dead port 2/2 on $mux $procmux$206.
+    dead port 1/2 on $mux $procmux$213.
+    dead port 1/2 on $mux $procmux$215.
+    dead port 1/2 on $mux $procmux$218.
+    dead port 2/2 on $mux $procmux$220.
+    dead port 1/2 on $mux $procmux$226.
+    dead port 1/2 on $mux $procmux$229.
+    dead port 2/2 on $mux $procmux$231.
+    dead port 1/2 on $mux $procmux$260.
+    dead port 1/2 on $mux $procmux$262.
+    dead port 1/2 on $mux $procmux$265.
+    dead port 2/2 on $mux $procmux$267.
+    dead port 1/2 on $mux $procmux$274.
+    dead port 1/2 on $mux $procmux$276.
+    dead port 1/2 on $mux $procmux$279.
+    dead port 2/2 on $mux $procmux$281.
+    dead port 1/2 on $mux $procmux$287.
+    dead port 1/2 on $mux $procmux$290.
+    dead port 2/2 on $mux $procmux$292.
+    dead port 1/2 on $mux $procmux$321.
+    dead port 1/2 on $mux $procmux$323.
+    dead port 1/2 on $mux $procmux$326.
+    dead port 2/2 on $mux $procmux$328.
+    dead port 1/2 on $mux $procmux$335.
+    dead port 1/2 on $mux $procmux$337.
+    dead port 1/2 on $mux $procmux$340.
+    dead port 2/2 on $mux $procmux$342.
+    dead port 1/2 on $mux $procmux$382.
+    dead port 1/2 on $mux $procmux$384.
+    dead port 1/2 on $mux $procmux$387.
+    dead port 2/2 on $mux $procmux$389.
+    dead port 1/2 on $mux $procmux$396.
+    dead port 1/2 on $mux $procmux$398.
+    dead port 1/2 on $mux $procmux$401.
+    dead port 2/2 on $mux $procmux$403.
+    dead port 1/2 on $mux $procmux$443.
+    dead port 1/2 on $mux $procmux$445.
+    dead port 1/2 on $mux $procmux$448.
+    dead port 2/2 on $mux $procmux$450.
+    dead port 1/2 on $mux $procmux$457.
+    dead port 1/2 on $mux $procmux$459.
+    dead port 1/2 on $mux $procmux$462.
+    dead port 2/2 on $mux $procmux$464.
+    dead port 1/2 on $mux $procmux$470.
+    dead port 1/2 on $mux $procmux$473.
+    dead port 2/2 on $mux $procmux$475.
+    dead port 1/2 on $mux $procmux$503.
+    dead port 2/2 on $mux $procmux$505.
+    dead port 1/2 on $mux $procmux$511.
+    dead port 2/2 on $mux $procmux$513.
+    dead port 1/2 on $mux $procmux$519.
+    dead port 2/2 on $mux $procmux$521.
+    dead port 2/2 on $mux $procmux$527.
+    dead port 1/2 on $mux $procmux$530.
+    dead port 2/2 on $mux $procmux$532.
+    dead port 2/2 on $mux $procmux$538.
+    dead port 1/2 on $mux $procmux$541.
+    dead port 2/2 on $mux $procmux$543.
+    dead port 1/2 on $mux $procmux$104.
+    dead port 1/2 on $mux $procmux$107.
+    dead port 2/2 on $mux $procmux$109.
+    dead port 1/2 on $mux $procmux$115.
+    dead port 1/2 on $mux $procmux$118.
+    dead port 2/2 on $mux $procmux$587.
+    dead port 2/2 on $mux $procmux$120.
+    dead port 1/2 on $mux $procmux$65.
+    dead port 1/2 on $mux $procmux$138.
+    dead port 1/2 on $mux $procmux$140.
+    dead port 1/2 on $mux $procmux$68.
+    dead port 1/2 on $mux $procmux$143.
+    dead port 2/2 on $mux $procmux$145.
+    dead port 1/2 on $mux $procmux$152.
+    dead port 2/2 on $mux $procmux$70.
+    dead port 1/2 on $mux $procmux$154.
+    dead port 1/2 on $mux $procmux$77.
+    dead port 1/2 on $mux $procmux$79.
+    dead port 1/2 on $mux $procmux$82.
+    dead port 2/2 on $mux $procmux$84.
+    dead port 1/2 on $mux $procmux$157.
+    dead port 1/2 on $mux $procmux$91.
+    dead port 1/2 on $mux $procmux$93.
+    dead port 1/2 on $mux $procmux$96.
+    dead port 2/2 on $mux $procmux$98.
+    dead port 2/2 on $mux $procmux$159.
+Removed 90 multiplexer ports.
+<suppressed ~619 debug messages>
+
+2.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 0 unused cells and 153 unused wires.
+<suppressed ~1 debug messages>
+
+2.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~301 debug messages>
+
+2.6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.6.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.7. Executing FSM pass (extract and optimize FSM).
+
+2.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register fp16_sum_sub.state.
+
+2.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `\fp16_sum_sub'.
+  found $adff cell for state register: $procdff$710
+  root of input selection tree: $0\state[1:0]
+  found reset state: 2'00 (from async reset)
+  found ctrl input: $procmux$110_CMP
+  found ctrl input: $procmux$626_CMP
+  found ctrl input: $procmux$651_CMP
+  found ctrl input: $procmux$687_CMP
+  found state code: 2'11
+  found state code: 2'10
+  found ctrl input: \start
+  found state code: 2'01
+  found ctrl output: $procmux$110_CMP
+  found ctrl output: $procmux$626_CMP
+  found ctrl output: $procmux$651_CMP
+  found ctrl output: $procmux$687_CMP
+  ctrl inputs: \start
+  ctrl outputs: { $procmux$687_CMP $procmux$651_CMP $procmux$626_CMP $procmux$110_CMP $0\state[1:0] }
+  transition:       2'00 1'0 ->       2'00 6'100000
+  transition:       2'00 1'1 ->       2'01 6'100001
+  transition:       2'10 1'- ->       2'11 6'001011
+  transition:       2'01 1'- ->       2'10 6'010010
+  transition:       2'11 1'- ->       2'00 6'000100
+
+2.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$758' from module `\fp16_sum_sub'.
+
+2.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 7 unused cells and 7 unused wires.
+<suppressed ~8 debug messages>
+
+2.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$758' from module `\fp16_sum_sub'.
+  Removing unused output signal $0\state[1:0] [0].
+  Removing unused output signal $0\state[1:0] [1].
+  Removing unused output signal $procmux$687_CMP.
+
+2.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$758' from module `\fp16_sum_sub' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  00 -> ---1
+  10 -> --1-
+  01 -> -1--
+  11 -> 1---
+
+2.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$758' from module `fp16_sum_sub':
+-------------------------------------
+
+  Information on FSM $fsm$\state$758 (\state):
+
+  Number of input signals:    1
+  Number of output signals:   3
+  Number of state bits:       4
+
+  Input signals:
+    0: \start
+
+  Output signals:
+    0: $procmux$110_CMP
+    1: $procmux$626_CMP
+    2: $procmux$651_CMP
+
+  State encoding:
+    0:     4'---1  <RESET STATE>
+    1:     4'--1-
+    2:     4'-1--
+    3:     4'1---
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 1'0   ->     0 3'000
+      1:     0 1'1   ->     2 3'000
+      2:     1 1'-   ->     3 3'010
+      3:     2 1'-   ->     1 3'100
+      4:     3 1'-   ->     0 3'001
+
+-------------------------------------
+
+2.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$758' from module `\fp16_sum_sub'.
+
+2.8. Executing OPT pass (performing simple optimizations).
+
+2.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~2 debug messages>
+
+2.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~298 debug messages>
+
+2.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$737 ($adff) from module fp16_sum_sub (D = \al_exp, Q = \cm_exp).
+Adding EN signal on $procdff$734 ($adff) from module fp16_sum_sub (D = $procmux$632_Y, Q = \cm_sign).
+Adding EN signal on $procdff$731 ($adff) from module fp16_sum_sub (D = $procmux$641_Y, Q = \cm_mant).
+Adding EN signal on $procdff$728 ($adff) from module fp16_sum_sub (D = $procmux$648_Y, Q = \al_b_larger).
+Adding EN signal on $procdff$725 ($adff) from module fp16_sum_sub (D = \sb_eff, Q = \al_sb_eff).
+Adding EN signal on $procdff$722 ($adff) from module fp16_sum_sub (D = \operand_a [15], Q = \al_sa).
+Adding EN signal on $procdff$719 ($adff) from module fp16_sum_sub (D = $procmux$663_Y, Q = \al_mb).
+Adding EN signal on $procdff$716 ($adff) from module fp16_sum_sub (D = $procmux$670_Y, Q = \al_ma).
+Adding EN signal on $procdff$713 ($adff) from module fp16_sum_sub (D = $procmux$677_Y, Q = \al_exp).
+Adding EN signal on $procdff$698 ($adff) from module fp16_sum_sub (D = $procmux$692_Y, Q = \result).
+
+2.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 10 unused cells and 18 unused wires.
+<suppressed ~11 debug messages>
+
+2.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.8.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.8.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~285 debug messages>
+
+2.8.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.8.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.8.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.8.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.8.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.8.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 4 bits (of 8) from port B of cell fp16_sum_sub.$ge$src/fp16_sum_sub.v:125$9 ($ge).
+Removed top 4 bits (of 8) from port B of cell fp16_sum_sub.$ge$src/fp16_sum_sub.v:131$14 ($ge).
+Removed top 1 bits (of 9) from port A of cell fp16_sum_sub.$add$src/fp16_sum_sub.v:148$19 ($add).
+Removed top 1 bits (of 9) from port B of cell fp16_sum_sub.$add$src/fp16_sum_sub.v:148$19 ($add).
+Removed top 1 bits (of 9) from port A of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:153$21 ($sub).
+Removed top 1 bits (of 9) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:153$21 ($sub).
+Removed top 1 bits (of 9) from port A of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:156$22 ($sub).
+Removed top 1 bits (of 9) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:156$22 ($sub).
+Removed top 7 bits (of 8) from port B of cell fp16_sum_sub.$add$src/fp16_sum_sub.v:191$26 ($add).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:197$30 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:197$31 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:197$31 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:198$34 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:198$35 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:198$35 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:199$38 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:199$39 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:199$39 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:200$42 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:200$43 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:200$43 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:201$46 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:201$47 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:201$47 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:202$50 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:202$51 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:202$51 ($sub).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$gt$src/fp16_sum_sub.v:203$54 ($gt).
+Removed top 31 bits (of 32) from port B of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:203$55 ($sub).
+Removed top 24 bits (of 32) from port Y of cell fp16_sum_sub.$sub$src/fp16_sum_sub.v:203$55 ($sub).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$562 ($mux).
+Removed top 2 bits (of 9) from mux cell fp16_sum_sub.$procmux$585 ($mux).
+Removed top 1 bits (of 16) from mux cell fp16_sum_sub.$procmux$689 ($mux).
+Removed top 2 bits (of 9) from mux cell fp16_sum_sub.$procmux$516 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$131 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$129 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$126 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$124 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$192 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$190 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$187 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$185 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$253 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$251 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$248 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$246 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$314 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$312 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$309 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$307 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$375 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$373 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$370 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$368 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$436 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$434 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$431 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$429 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$497 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$495 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$492 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$490 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$567 ($mux).
+Removed top 1 bits (of 9) from mux cell fp16_sum_sub.$procmux$565 ($mux).
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$10\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$11\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$12\norm.m[8:0].
+Removed top 2 bits (of 9) from wire fp16_sum_sub.$3\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$4\norm.m[8:0].
+Removed top 2 bits (of 9) from wire fp16_sum_sub.$5\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$6\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$7\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$8\norm.m[8:0].
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$9\norm.m[8:0].
+Removed top 3 bits (of 8) from wire fp16_sum_sub.$add$src/fp16_sum_sub.v:191$26_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$124_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$126_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$129_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$185_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$187_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$190_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$246_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$248_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$251_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$307_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$309_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$312_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$368_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$370_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$373_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$429_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$431_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$434_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$490_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$492_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$495_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$562_Y.
+Removed top 1 bits (of 9) from wire fp16_sum_sub.$procmux$565_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:197$31_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:198$35_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:199$39_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:200$43_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:201$47_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:202$51_Y.
+Removed top 24 bits (of 32) from wire fp16_sum_sub.$sub$src/fp16_sum_sub.v:203$55_Y.
+
+2.10. Executing PEEPOPT pass (run peephole optimizers).
+
+2.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 0 unused cells and 40 unused wires.
+<suppressed ~1 debug messages>
+
+2.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module fp16_sum_sub:
+  creating $macc model for $add$src/fp16_sum_sub.v:148$19 ($add).
+  creating $macc model for $add$src/fp16_sum_sub.v:191$26 ($add).
+  creating $macc model for $sub$src/fp16_sum_sub.v:125$8 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:131$13 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:153$21 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:156$22 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:197$31 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:198$35 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:199$39 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:200$43 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:201$47 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:202$51 ($sub).
+  creating $macc model for $sub$src/fp16_sum_sub.v:203$55 ($sub).
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:203$55.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:202$51.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:201$47.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:200$43.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:199$39.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:198$35.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:197$31.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:156$22.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:153$21.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:131$13.
+  creating $alu model for $macc $sub$src/fp16_sum_sub.v:125$8.
+  creating $alu model for $macc $add$src/fp16_sum_sub.v:191$26.
+  creating $alu model for $macc $add$src/fp16_sum_sub.v:148$19.
+  creating $alu model for $ge$src/fp16_sum_sub.v:121$7 ($ge): merged with $sub$src/fp16_sum_sub.v:125$8.
+  creating $alu model for $ge$src/fp16_sum_sub.v:125$9 ($ge): new $alu
+  creating $alu model for $ge$src/fp16_sum_sub.v:131$14 ($ge): new $alu
+  creating $alu model for $ge$src/fp16_sum_sub.v:187$25 ($ge): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:197$30 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:198$34 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:199$38 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:200$42 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:201$46 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:202$50 ($gt): new $alu
+  creating $alu model for $gt$src/fp16_sum_sub.v:203$54 ($gt): new $alu
+  creating $alu cell for $gt$src/fp16_sum_sub.v:203$54: $auto$alumacc.cc:512:replace_alu$838
+  creating $alu cell for $gt$src/fp16_sum_sub.v:202$50: $auto$alumacc.cc:512:replace_alu$849
+  creating $alu cell for $gt$src/fp16_sum_sub.v:201$46: $auto$alumacc.cc:512:replace_alu$860
+  creating $alu cell for $gt$src/fp16_sum_sub.v:200$42: $auto$alumacc.cc:512:replace_alu$871
+  creating $alu cell for $gt$src/fp16_sum_sub.v:199$38: $auto$alumacc.cc:512:replace_alu$882
+  creating $alu cell for $gt$src/fp16_sum_sub.v:198$34: $auto$alumacc.cc:512:replace_alu$893
+  creating $alu cell for $gt$src/fp16_sum_sub.v:197$30: $auto$alumacc.cc:512:replace_alu$904
+  creating $alu cell for $ge$src/fp16_sum_sub.v:187$25: $auto$alumacc.cc:512:replace_alu$915
+  creating $alu cell for $ge$src/fp16_sum_sub.v:131$14: $auto$alumacc.cc:512:replace_alu$928
+  creating $alu cell for $ge$src/fp16_sum_sub.v:125$9: $auto$alumacc.cc:512:replace_alu$941
+  creating $alu cell for $add$src/fp16_sum_sub.v:191$26: $auto$alumacc.cc:512:replace_alu$954
+  creating $alu cell for $sub$src/fp16_sum_sub.v:125$8, $ge$src/fp16_sum_sub.v:121$7: $auto$alumacc.cc:512:replace_alu$957
+  creating $alu cell for $sub$src/fp16_sum_sub.v:131$13: $auto$alumacc.cc:512:replace_alu$970
+  creating $alu cell for $add$src/fp16_sum_sub.v:148$19: $auto$alumacc.cc:512:replace_alu$973
+  creating $alu cell for $sub$src/fp16_sum_sub.v:153$21: $auto$alumacc.cc:512:replace_alu$976
+  creating $alu cell for $sub$src/fp16_sum_sub.v:156$22: $auto$alumacc.cc:512:replace_alu$979
+  creating $alu cell for $sub$src/fp16_sum_sub.v:197$31: $auto$alumacc.cc:512:replace_alu$982
+  creating $alu cell for $sub$src/fp16_sum_sub.v:198$35: $auto$alumacc.cc:512:replace_alu$985
+  creating $alu cell for $sub$src/fp16_sum_sub.v:199$39: $auto$alumacc.cc:512:replace_alu$988
+  creating $alu cell for $sub$src/fp16_sum_sub.v:200$43: $auto$alumacc.cc:512:replace_alu$991
+  creating $alu cell for $sub$src/fp16_sum_sub.v:201$47: $auto$alumacc.cc:512:replace_alu$994
+  creating $alu cell for $sub$src/fp16_sum_sub.v:202$51: $auto$alumacc.cc:512:replace_alu$997
+  creating $alu cell for $sub$src/fp16_sum_sub.v:203$55: $auto$alumacc.cc:512:replace_alu$1000
+  created 23 $alu and 0 $macc cells.
+
+2.13. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module fp16_sum_sub that may be considered for resource sharing.
+  Analyzing resource sharing options for $shr$src/fp16_sum_sub.v:132$16 ($shr):
+    Found 1 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$940 $auto$rtlil.cc:3338:ReduceOr$969 }.
+    Found 1 candidates: $shr$src/fp16_sum_sub.v:126$11
+    Analyzing resource sharing with $shr$src/fp16_sum_sub.v:126$11 ($shr):
+      Found 1 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$953 $auto$rtlil.cc:3338:ReduceOr$969 }.
+      Activation pattern for cell $shr$src/fp16_sum_sub.v:132$16: { $auto$rtlil.cc:3338:ReduceOr$940 $auto$rtlil.cc:3338:ReduceOr$969 } = 2'00
+      Activation pattern for cell $shr$src/fp16_sum_sub.v:126$11: { $auto$rtlil.cc:3338:ReduceOr$953 $auto$rtlil.cc:3338:ReduceOr$969 } = 2'01
+      According to the SAT solver this pair of cells can be shared. (Pattern only case)
+      Simplified activation pattern for cell $shr$src/fp16_sum_sub.v:132$16: $auto$rtlil.cc:3338:ReduceOr$969 = 1'0
+      Simplified activation pattern for cell $shr$src/fp16_sum_sub.v:126$11: $auto$rtlil.cc:3338:ReduceOr$969 = 1'1
+      Activation signal for $shr$src/fp16_sum_sub.v:132$16: $auto$share.cc:1068:make_cell_activation_logic$1003
+      New cell: $auto$share.cc:669:make_supercell$1010 ($shr)
+  Analyzing resource sharing options for $auto$share.cc:669:make_supercell$1010 ($shr):
+    Found 2 activation_patterns using ctrl signal { $auto$rtlil.cc:3338:ReduceOr$940 $auto$rtlil.cc:3338:ReduceOr$953 $auto$rtlil.cc:3338:ReduceOr$969 }.
+    No candidates found.
+Removing 2 cells in module fp16_sum_sub:
+  Removing cell $shr$src/fp16_sum_sub.v:126$11 ($shr).
+  Removing cell $shr$src/fp16_sum_sub.v:132$16 ($shr).
+
+2.14. Executing OPT pass (performing simple optimizations).
+
+2.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~38 debug messages>
+
+2.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+2.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~293 debug messages>
+
+2.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 8 unused cells and 56 unused wires.
+<suppressed ~17 debug messages>
+
+2.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.14.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.14.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~293 debug messages>
+
+2.14.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.14.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.14.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.14.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.14.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.14.16. Finished fast OPT passes. (There is nothing left to do.)
+
+2.15. Executing MEMORY pass.
+
+2.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+2.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+2.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.17. Executing OPT pass (performing simple optimizations).
+
+2.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~73 debug messages>
+
+2.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 0 unused cells and 66 unused wires.
+<suppressed ~1 debug messages>
+
+2.17.5. Finished fast OPT passes.
+
+2.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+2.19. Executing OPT pass (performing simple optimizations).
+
+2.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \fp16_sum_sub..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~93 debug messages>
+
+2.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \fp16_sum_sub.
+Performed a total of 0 changes.
+
+2.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+Removed a total of 0 cells.
+
+2.19.6. Executing OPT_SHARE pass.
+
+2.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+
+2.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+
+2.19.10. Finished fast OPT passes. (There is nothing left to do.)
+
+2.20. Executing TECHMAP pass (map to technology primitives).
+
+2.20.1. Executing Verilog-2005 frontend: /foss/tools/yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/foss/tools/yosys/bin/../share/yosys/techmap.v' to AST representation.
+verilog frontend filename /foss/tools/yosys/bin/../share/yosys/techmap.v
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `\$connect'.
+Generating RTLIL representation for module `\$input_port'.
+Successfully finished Verilog frontend.
+
+2.20.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$constmap:f99840ec908483ed147148e5b457b3755f98764b$paramod$a08c7934b445edfea576efdfd2b3c0748a9533c1\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using template $paramod$403a3c2fa431a154c52a6a5429d7a6260b5d144f\_90_alu for cells of type $alu.
+Using template $paramod$4ccbe221165818e15f326ddee3d1183c7924e12f\_90_alu for cells of type $alu.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_90_alu for cells of type $alu.
+Using template $paramod$dc04b7d98e503a7bab16fce2df70e6e2c5ca34d6\_90_alu for cells of type $alu.
+Using template $paramod$dbcdc7e8aa1a4080cea2deda6fdc8772064f4d90\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000111 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000111 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001000 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000000101 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000000101 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000001001 for cells of type $fa.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000001001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1643 debug messages>
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~890 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+<suppressed ~309 debug messages>
+Removed a total of 103 cells.
+
+2.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 84 unused cells and 852 unused wires.
+<suppressed ~85 debug messages>
+
+2.21.5. Finished fast OPT passes.
+
+2.22. Executing ABC pass (technology mapping using ABC).
+
+2.22.1. Extracting gate netlist of module `\fp16_sum_sub' to `<abc-temp-dir>/input.blif'..
+
+2.22.1.1. Executed ABC.
+Extracted 1097 gates and 1171 wires to a netlist network with 72 inputs and 56 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 21 2025 19:49:10)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library /tmp/yosys-abc-QTG1EE/stdcells.genlib 
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+2.22.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:       22
+ABC RESULTS:            ANDNOT cells:      268
+ABC RESULTS:               MUX cells:      270
+ABC RESULTS:              NAND cells:       25
+ABC RESULTS:               NOR cells:       62
+ABC RESULTS:               NOT cells:       80
+ABC RESULTS:                OR cells:       79
+ABC RESULTS:             ORNOT cells:       46
+ABC RESULTS:              XNOR cells:       21
+ABC RESULTS:               XOR cells:       96
+ABC RESULTS:        internal signals:     1043
+ABC RESULTS:           input signals:       72
+ABC RESULTS:          output signals:       56
+Removing temp directory.
+Removing global temp directory.
+
+2.23. Executing OPT pass (performing simple optimizations).
+
+2.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module fp16_sum_sub.
+<suppressed ~60 debug messages>
+
+2.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\fp16_sum_sub'.
+<suppressed ~45 debug messages>
+Removed a total of 15 cells.
+
+2.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \fp16_sum_sub..
+Removed 2 unused cells and 469 unused wires.
+<suppressed ~5 debug messages>
+
+2.23.5. Finished fast OPT passes.
+
+2.24. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `fp16_sum_sub'. Setting top module to fp16_sum_sub.
+
+2.24.1. Analyzing design hierarchy..
+Top module:  \fp16_sum_sub
+
+2.24.2. Analyzing design hierarchy..
+Top module:  \fp16_sum_sub
+Removed 0 unused modules.
+
+2.25. Printing statistics.
+
+=== fp16_sum_sub ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      976 wires
+     1074 wire bits
+       25 public wires
+      123 public wire bits
+       10 ports
+       55 port bits
+     1020 cells
+      253   $_ANDNOT_
+       22   $_AND_
+       61   $_DFFE_PP0P_
+        6   $_DFF_PP0_
+        1   $_DFF_PP1_
+      270   $_MUX_
+       25   $_NAND_
+       62   $_NOR_
+       78   $_NOT_
+       46   $_ORNOT_
+       79   $_OR_
+       21   $_XNOR_
+       96   $_XOR_
+
+2.26. Executing CHECK pass (checking for obvious problems).
+Checking module fp16_sum_sub...
+Found and reported 0 problems.
+
+3. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__edfxtp_1 (noninv, pins=4, area=30.03) is a direct match for cell type $_DFFE_PP_.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    unmapped dff cell: $_DFFE_NN_
+    unmapped dff cell: $_DFFE_NP_
+    unmapped dff cell: $_DFFE_PN_
+    \sky130_fd_sc_hd__edfxtp_1 _DFFE_PP_ (.CLK( C), .D( D), .DE( E), .Q( Q));
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+3.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+<suppressed ~24 debug messages>
+Mapping DFF cells in module `\fp16_sum_sub':
+  mapped 67 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_1 cells.
+  mapped 1 $_DFF_PN1_ cells to \sky130_fd_sc_hd__dfstp_2 cells.
+
+4. Executing ABC pass (technology mapping using ABC).
+
+4.1. Extracting gate netlist of module `\fp16_sum_sub' to `<abc-temp-dir>/input.blif'..
+
+4.1.1. Executed ABC.
+Extracted 1081 gates and 1181 wires to a netlist network with 100 inputs and 133 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: UC Berkeley, ABC 1.01 (compiled Dec 21 2025 19:49:10)
+ABC: abc 01> empty
+ABC: abc 01> source <abc-temp-dir>/abc.script
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.11 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib" has 334 cells (94 skipped: 63 seq; 13 tri-state; 18 no func; 0 dont_use; 0 with 2 outputs; 0 with 3+ outputs).  Time =     0.16 sec
+ABC: Memory =   19.85 MB. Time =     0.16 sec
+ABC: Warning: Detected 9 multi-output cells (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+ABC: 
+
+4.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__a2111o_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a2111oi_0 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a211oi_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a21boi_0 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__a21o_1 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:       70
+ABC RESULTS:   sky130_fd_sc_hd__a221oi_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a222oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a22o_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a22oi_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a31o_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:       17
+ABC RESULTS:   sky130_fd_sc_hd__a32o_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a32oi_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__and2_0 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__and3_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__and4_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__clkinv_1 cells:      107
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_inputiso1p_1 cells:       10
+ABC RESULTS:   sky130_fd_sc_hd__lpflow_isobufsrc_1 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__maj3_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__mux2_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__mux2i_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:       68
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_1 cells:       20
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:       42
+ABC RESULTS:   sky130_fd_sc_hd__nand4_1 cells:        8
+ABC RESULTS:   sky130_fd_sc_hd__nand4b_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:       98
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor3_1 cells:       16
+ABC RESULTS:   sky130_fd_sc_hd__nor3b_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nor4_1 cells:       15
+ABC RESULTS:   sky130_fd_sc_hd__nor4b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211a_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o211ai_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:       64
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o221a_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o221ai_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__o22a_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o22ai_1 cells:       20
+ABC RESULTS:   sky130_fd_sc_hd__o2bb2ai_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o31ai_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__o32ai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o41ai_1 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__or3_1 cells:        6
+ABC RESULTS:   sky130_fd_sc_hd__or3b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__or4b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_1 cells:       31
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:       23
+ABC RESULTS:        internal signals:      948
+ABC RESULTS:           input signals:      100
+ABC RESULTS:          output signals:      133
+Removing temp directory.
+Removing global temp directory.
+
+5. Printing statistics.
+
+=== fp16_sum_sub ===
+
+        +----------Local Count, excluding submodules.
+        | 
+     1963 wires
+     2061 wire bits
+       25 public wires
+      123 public wire bits
+       10 ports
+       55 port bits
+      826 cells
+        1   sky130_fd_sc_hd__a2111o_1
+        1   sky130_fd_sc_hd__a2111oi_0
+        6   sky130_fd_sc_hd__a211oi_1
+        6   sky130_fd_sc_hd__a21boi_0
+        8   sky130_fd_sc_hd__a21o_1
+       70   sky130_fd_sc_hd__a21oi_1
+        3   sky130_fd_sc_hd__a221oi_1
+        1   sky130_fd_sc_hd__a222oi_1
+        4   sky130_fd_sc_hd__a22o_1
+        3   sky130_fd_sc_hd__a22oi_1
+        4   sky130_fd_sc_hd__a31o_1
+       17   sky130_fd_sc_hd__a31oi_1
+        2   sky130_fd_sc_hd__a32o_1
+        4   sky130_fd_sc_hd__a32oi_1
+       13   sky130_fd_sc_hd__and2_0
+        5   sky130_fd_sc_hd__and3_1
+        1   sky130_fd_sc_hd__and4_1
+      107   sky130_fd_sc_hd__clkinv_1
+       67   sky130_fd_sc_hd__dfrtp_1
+        1   sky130_fd_sc_hd__dfstp_2
+       10   sky130_fd_sc_hd__lpflow_inputiso1p_1
+       13   sky130_fd_sc_hd__lpflow_isobufsrc_1
+        9   sky130_fd_sc_hd__maj3_1
+        4   sky130_fd_sc_hd__mux2_1
+        9   sky130_fd_sc_hd__mux2i_1
+       68   sky130_fd_sc_hd__nand2_1
+       20   sky130_fd_sc_hd__nand2b_1
+       42   sky130_fd_sc_hd__nand3_1
+        8   sky130_fd_sc_hd__nand4_1
+        2   sky130_fd_sc_hd__nand4b_1
+       98   sky130_fd_sc_hd__nor2_1
+        3   sky130_fd_sc_hd__nor2b_1
+       16   sky130_fd_sc_hd__nor3_1
+        3   sky130_fd_sc_hd__nor3b_1
+       15   sky130_fd_sc_hd__nor4_1
+        1   sky130_fd_sc_hd__nor4b_1
+        1   sky130_fd_sc_hd__o211a_1
+        2   sky130_fd_sc_hd__o211ai_1
+        6   sky130_fd_sc_hd__o21a_1
+       64   sky130_fd_sc_hd__o21ai_0
+        2   sky130_fd_sc_hd__o21ba_1
+        1   sky130_fd_sc_hd__o21bai_1
+        1   sky130_fd_sc_hd__o221a_1
+        5   sky130_fd_sc_hd__o221ai_1
+        1   sky130_fd_sc_hd__o22a_1
+       20   sky130_fd_sc_hd__o22ai_1
+        2   sky130_fd_sc_hd__o2bb2ai_1
+        4   sky130_fd_sc_hd__o31ai_1
+        1   sky130_fd_sc_hd__o32ai_1
+        4   sky130_fd_sc_hd__o41ai_1
+        6   sky130_fd_sc_hd__or3_1
+        1   sky130_fd_sc_hd__or3b_1
+        5   sky130_fd_sc_hd__or4_1
+        1   sky130_fd_sc_hd__or4b_1
+       31   sky130_fd_sc_hd__xnor2_1
+       23   sky130_fd_sc_hd__xor2_1
+
+6. Executing Verilog backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Dumping module `\fp16_sum_sub'.
+
+End of script. Logfile hash: 89f3735b39, CPU: user 0.49s system 0.10s, MEM: 64.12 MB peak
+Yosys 0.60 (git sha1 5bafeb77d, g++ 13.3.0-6ubuntu2~24.04 -fPIC -O3)
+Time spent: 61% 2x abc (0 sec), 7% 1x dfflibmap (0 sec), ...
