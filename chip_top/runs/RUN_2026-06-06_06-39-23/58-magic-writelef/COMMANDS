@@ -1,0 +1,1 @@
+magic -dnull -noconsole -rcfile /foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.tech/magic/sky130A.magicrc /usr/local/lib/python3.12/dist-packages/librelane/scripts/magic/wrapper.tcl
