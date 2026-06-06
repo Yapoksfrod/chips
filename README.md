@@ -91,23 +91,23 @@ El propósito principal es demostrar la integración de unidades aritméticas de
 
 | Instrucción | Código | Estado |
 |---|---|---|
-| SUM — sumatoria acumulada | `0000` | ✅ Implementado y verificado |
-| SUB — resta acumulada | `1000` | ✅ Implementado y verificado |
-| MPY — multiplicación acumulada | `0001` | ✅ Implementado y verificado |
-| DIV — división acumulada | `0010` | ✅ Implementado y verificado |
-| Inicialización ACC = 0.0 | `init=0000` | ✅ Funciona correctamente |
-| Inicialización ACC = 1.0 | `init=0001` | ✅ Funciona correctamente |
-| Interfaz SPI Modo 0, LSB primero | — | ✅ Con sincronizadores CDC doble FF |
-| Retorno de ACC en MISO por trama | — | ✅ Implementado |
+| SUM — sumatoria acumulada | `0000` | Implementado y verificado en simulación |
+| SUB — resta acumulada | `1000` | Implementado y verificado en simulación |
+| MPY — multiplicación acumulada | `0001` | Implementado y verificado en simulación |
+| DIV — división acumulada | `0010` | Implementado y verificado en simulación |
+| Inicialización ACC = 0.0 | `init=0000` | Funciona correctamente |
+| Inicialización ACC = 1.0 | `init=0001` | Funciona correctamente |
+| Interfaz SPI Modo 0, LSB primero | — | Implementada con sincronizadores CDC de doble FF |
+| Retorno de ACC en MISO por trama | — | Implementado |
 
 ### Pendiente / no implementado
 
 | Instrucción | Código | Observación |
 |---|---|---|
-| MAC — Multiplicación-Acumulación | `0011` | ❌ No implementado |
-| MAS — Multiplicación-Sustracción | `1011` | ❌ No implementado |
-| Inicialización `001X` sin cambio de ACC | `0010`/`0011` | ⚠️ El valor del acumulador no se preserva correctamente entre sesiones SPI |
-| Manejo de NaN, Inf, subnormales | — | ❌ No implementado |
+| MAC — Multiplicación-Acumulación | `0011` | No implementado. La FSM lo rechaza como opcode inválido |
+| MAS — Multiplicación-Sustracción | `1011` | No implementado. Misma situación que MAC |
+| Inicialización `001X` sin cambio de ACC | `0010`/`0011` | El valor del acumulador no se preserva correctamente entre sesiones SPI consecutivas |
+| Manejo de NaN, Inf, subnormales | — | No se manejan casos especiales bfloat16 |
 
 ---
 
@@ -132,118 +132,145 @@ dot -Tpng rtl_view.dot -o rtl_view.png
 
 ## 5. Simulación comportamental
 
-Simulación realizada con **Icarus Verilog** sobre `tb/tb_chip_top.v`. Vista general de todas las operaciones:
+Simulación realizada con **Icarus Verilog** sobre `tb/tb_chip_top.v`. Vista general de todas las operaciones en secuencia:
 
 ![Trama completa — todas las operaciones](trama_completa.jpeg)
 
-En `acc_reg` se observa la secuencia completa: SUM → SUB → MPY → DIV → caso excepcional.
+En la señal `acc_reg` se observa la secuencia completa de resultados para SUM, SUB, MPY, DIV y el caso excepcional.
 
-### Protocolo SPI
+### Protocolo SPI utilizado
 
 ```
-Trama 0:  CMD  (opcode + init ACC)  →  MISO retorna ACC previo
-Trama 1:  OP1  (operando bfloat16)  →  MISO retorna ACC inicializado
-Trama N:  OPn  (operando bfloat16)  →  MISO retorna resultado anterior
+Trama 0:  CMD  (opcode + init ACC)  →  MISO retorna ACC previo al init
+Trama 1:  OP1  (operando bfloat16)  →  MISO retorna ACC tras inicialización
+Trama N:  OPn  (operando bfloat16)  →  MISO retorna resultado de la op anterior
 ```
 
 ### Caso 1 — SUM: `0 + 1.0 + 2.0 = 3.0`
 
-Comando `0x0001` (SUM, init ACC=0). `acc_reg`: `0x0000` → `0x3F80` (1.0) → `0x4040` (3.0) ✅
+Se envía el comando `0x0001` (SUM, init ACC=0) seguido de los operandos `0x3F80` (1.0) y `0x4000` (2.0). El acumulador evoluciona de `0x0000` a `0x3F80` (1.0) tras el primer operando, y a `0x4040` (3.0) tras el segundo. El resultado es correcto.
 
 ![SUM: 0 + 1.0 + 2.0 = 3.0](suma%200%20(0000)%201%20(3F80)%20+%202%20(4000)%20=%203%20(4040).jpeg)
 
 ### Caso 2 — SUB: `0 − 1.0 − 2.0 = −3.0`
 
-Comando `0x0080` (SUB, init ACC=0). `acc_reg`: `0x0000` → `0xBF80` (−1.0) → `0xC040` (−3.0) ✅
+Se envía el comando `0x0080` (SUB, init ACC=0) seguido de los operandos `0x3F80` (1.0) y `0x4000` (2.0). El acumulador toma el valor `0xBF80` (−1.0) tras el primer operando y `0xC040` (−3.0) tras el segundo. El signo y la magnitud son correctos en bfloat16.
 
 ![SUB: 0 - 1.0 - 2.0 = -3.0](resta%200%20-%201%20-%202%20=%20-3%20(C040).jpeg)
 
 ### Caso 3 — MPY: `1.0 × 2.0 × 3.0 = 6.0`
 
-Comando `0x0011` (MPY, init ACC=1). `acc_reg`: `0x3F80` → `0x4000` (2.0) → `0x40C0` (6.0) ✅
+Se envía el comando `0x0011` (MPY, init ACC=1.0) seguido de los operandos `0x4000` (2.0) y `0x4040` (3.0). El acumulador toma el valor `0x4000` (2.0) tras el primer operando y `0x40C0` (6.0) tras el segundo. La multiplicación acumulada funciona correctamente.
 
 ![MPY: 1.0 x 2.0 x 3.0 = 6.0](multiplicacion%20123%20=%206%20(40C0).jpeg)
 
 ### Caso 4 — DIV: `1.0 / 2.0 = 0.5`
 
-Comando `0x0021` (DIV, init ACC=1). `acc_reg`: `0x3F80` → `0x3F00` (0.5) ✅
+Se envía el comando `0x0021` (DIV, init ACC=1.0) seguido del operando `0x4000` (2.0). El acumulador toma el valor `0x3F00` (0.5). El resultado es correcto.
 
-> **Nota:** el módulo `fractional_divider` original tenía un bug en el ancho del contador (`$clog2(N)-1` bits en lugar de `$clog2(N)` bits), lo que impedía que la señal `done` se activara con N=8. Corregido cambiando `reg [$clog2(N)-1:0] counter` por `reg [$clog2(N):0] counter`.
+Durante el desarrollo se identificó un bug en el módulo `fractional_divider`: el contador interno estaba declarado con `$clog2(N)-1` bits, lo que para N=8 resultaba en un contador de 3 bits incapaz de representar el valor 8 (necesita 4 bits). Esto impedía que la señal `done` se activara y la FSM quedaba bloqueada en `ST_WAIT_DONE`. La corrección consistió en cambiar la declaración a `reg [$clog2(N):0] counter`.
 
 ![DIV: 1.0 / 2.0 = 0.5](division%2012%20=%200.5%20(3F00).jpeg)
 
-### Caso excepcional — Inicialización `001X`
+### Caso excepcional — Inicialización `001X` (sin cambio de ACC)
 
-Se intentó retener ACC=0.5 y sumarle 1.0 (esperando 1.5 = `0x3FC0`). El chip produjo `0x7EBF` ≈ 1.27×10³⁸. El valor del acumulador no se preserva correctamente entre sesiones SPI consecutivas. **Este caso queda pendiente.**
+Se intentó encadenar una operación DIV seguida de una SUM usando `init=001X` para retener el ACC en 0.5 y sumarle 1.0, esperando obtener 1.5 (`0x3FC0`). El chip produjo `0x7EBF` (aproximadamente 1.27×10³⁸), un valor claramente erróneo.
 
-![Caso excepcional: 0x7EBF](error%207EBF%20es%20valor%20estupidamente%20grande.jpeg)
+El análisis indica que al finalizar la sesión SPI con `ss=1` la FSM regresa a `ST_IDLE`, y en la siguiente transacción sobrescribe `shift_out` con el valor de `acc_reg` antes de que este se haya estabilizado correctamente. La retención del acumulador entre sesiones SPI consecutivas no está correctamente implementada. Este caso queda pendiente.
+
+![Caso excepcional: acc_reg = 0x7EBF](error%207EBF%20es%20valor%20estupidamente%20grande.jpeg)
 
 ---
 
-## 6. Simulación funcional post-layout
+## 6. Simulación funcional post-layout y diagrama de temporización
 
-La simulación post-layout se realizó con el netlist generado por OpenLane (`final/nl/chip_top.nl.v`) compilado contra las celdas sky130, verificando la operación SUM con resultado correcto `0x4040` = 3.0.
+La simulación post-layout se realizó compilando el netlist generado por OpenLane (`final/nl/chip_top.nl.v`) contra las celdas estándar sky130, verificando que la operación SUM produce el resultado correcto `0x4040` = 3.0, confirmando que el flujo de síntesis y P&R es funcionalmente correcto.
 
 ### Diagrama de temporización estilo hoja de datos — Operación SUM
 
 ```
-SS   ‾‾‾‾‾|___________________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+         t_setup  t_hold
+           ◄──►   ◄──►
+SS   ‾‾‾‾‾|___________________________|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 SCLK      |‾|_|‾|_ ... _|‾|_|         |‾|_|‾|_ ... _|‾|_|
-           └──── Trama CMD (16b) ────┘  └── Trama OP1 (16b) ─
+           └──── Trama CMD (16 bits) ─┘  └── Trama OP1 (16 bits) ─
 
-MOSI      [     CMD: 0x0001 (SUM)    ]  [   OP1: 0x3F80 (1.0)  ]
+MOSI      [      CMD: 0x0001 (SUM)    ]  [   OP1: 0x3F80 = 1.0   ]
 
-MISO      [   ACC_prev = 0x0000      ]  [   ACC = 0x3F80 (1.0)  ]
+                                               t_valid
+                                                ◄──►
+MISO      [    ACC_prev = 0x0000      ]  [   ACC = 0x3F80 = 1.0   ]
+                                                  ↑
+                                           Resultado disponible
+                                           en flanco de bajada SCLK
 ```
 
-| Parámetro | Valor |
-|---|---|
-| `t_setup` MOSI → SCLK↑ | 80 ns |
-| `t_hold` SCLK↑ → MOSI | 20 ns |
-| `t_valid` SCLK↓ → MISO válido | < 1 ciclo SCLK |
-| Periodo SCLK mínimo | 200 ns (5 MHz) |
-| Trama completa (16 bits) | 3.2 µs a 5 MHz |
+| Parámetro | Valor | Descripción |
+|---|---|---|
+| `t_setup` MOSI antes de SCLK subida | 80 ns | Tiempo de setup del dato MOSI |
+| `t_hold` MOSI después de SCLK subida | 20 ns | Tiempo de hold del dato MOSI |
+| `t_valid` SCLK bajada hasta MISO válido | < 1 ciclo SCLK | MISO se actualiza en flanco de bajada |
+| Periodo SCLK mínimo | 200 ns | 5 MHz máximo del bus SPI |
+| Trama completa (16 bits) | 3.2 µs | A 5 MHz de SCLK |
 
 ---
 
-## 7. Caracterización de área y temporización
+## 7. Análisis, área y temporización del chip
 
-### Área (síntesis Yosys)
+### Análisis del diseño
 
-![Métricas de área — síntesis](metrica_area_1.jpeg)
+El chip integra tres unidades aritméticas independientes (`fp16_sum_sub`, `fpmul`, `fractional_divider`) bajo una FSM centralizada que las coordina a través de la interfaz SPI. Cada unidad opera de forma secuencial bajo demanda: la FSM lanza la operación en el estado `ST_EXECUTE` mediante un pulso de un solo ciclo de reloj, y espera la señal `done` en `ST_WAIT_DONE` antes de actualizar el acumulador y retornar al estado de recepción de operandos.
 
-![Métricas de área — resultado final](metrica_area_2.jpeg)
+El dominio de reloj del chip (50 MHz) y el dominio SPI (5 MHz) son asíncronos entre sí. Para evitar metaestabilidad, las señales `sclk`, `ss` y `mosi` se sincronizan mediante registros de doble flip-flop (CDC), y los flancos de `sclk` se detectan por comparación de los dos registros sincronizados. Esto introduce una latencia de 2 ciclos de reloj en la detección de flancos SPI, lo cual es despreciable dado que el SCLK es 10 veces más lento que el CLK.
 
-| Métrica | Valor |
+El divisor fraccional implementa el algoritmo de división por restas sucesivas con N=8 iteraciones, operando sobre las mantisas de 8 bits (bit implícito + 7 fraccionarios). El exponente del resultado se calcula como `exp_A - exp_B + 127` y se limita al rango [1, 254] para evitar representar cero o infinito. El signo se obtiene por XOR de los signos de los operandos.
+
+Una limitación identificada es que el diseño no implementa las operaciones MAC y MAS, y no maneja casos especiales del estándar bfloat16 como NaN, infinito o números subnormales. Para una implementación completa del estándar estas condiciones deberían detectarse y propagarse correctamente.
+
+### Métricas de área (síntesis Yosys)
+
+![Metricas de area — proceso de sintesis](metrica_area_1.jpeg)
+
+![Metricas de area — resultado final](metrica_area_2.jpeg)
+
+| Metrica | Valor |
 |---|---|
-| Área total del chip (die area) | 35,424 µm² |
-| Área del core | 29,402 µm² |
-| Área de instancias estándar | 19,758 µm² |
-| Número de celdas estándar | 2,458 |
-| Celdas secuenciales | 185 |
+| Area total del chip (die area) | 35,424 um2 |
+| Area del core | 29,402 um2 |
+| Area de instancias estandar | 19,758 um2 |
+| Numero de celdas estandar | 2,458 |
+| Celdas secuenciales (flip-flops) | 185 |
+| Porcentaje de area secuencial | 27.4% |
 
-### Temporización (post-P&R, corner típico nom_tt_025C_1v80)
+### Temporización (post-P&R, corner tipico nom_tt_025C_1v80)
 
-| Métrica | Valor |
+| Metrica | Valor | Interpretacion |
+|---|---|---|
+| Periodo de reloj (CLK) | 20.0 ns | 50 MHz |
+| WNS — Worst Negative Slack (setup) | 0.0 ns | Timing cerrado |
+| TNS — Total Negative Slack (setup) | 0.0 ns | Sin violaciones |
+| WNS — Hold | 0.0 ns | Sin violaciones de hold |
+| Frecuencia maxima alcanzada | 50.0 MHz | 1 / (20.0 - 0.0) ns |
+
+El timing cierra sin violaciones en el corner tipico (TT, 25 grados C, 1.8V). En el corner lento (SS, 100 grados C, 1.6V) el WNS es -0.51 ns, lo que indica que a 50 MHz el diseno presenta violaciones marginales en condiciones extremas. Para un diseno orientado a produccion se recomendaria reducir el reloj a 45 MHz o ajustar el CLOCK_PERIOD a 22 ns en el config.json.
+
+### Potencia (corner tipico)
+
+| Tipo | Valor |
 |---|---|
-| Periodo de reloj | 20.0 ns (50 MHz) |
-| WNS setup | **0.0 ns** — timing cerrado ✅ |
-| TNS setup | **0.0 ns** — sin violaciones ✅ |
-| Frecuencia máxima | **50.0 MHz** |
-| Potencia total | ~0.97 mW |
-
-> En el corner lento (SS, 100°C, 1.6V) el WNS es −0.51 ns. Para producción se recomendaría reducir el reloj a ~45 MHz.
+| Potencia interna | 0.679 mW |
+| Potencia de conmutacion | 0.290 mW |
+| Potencia de fuga | 30 nW |
+| Potencia total | 0.97 mW |
 
 ---
 
 ## 8. Layout final
 
-Layout visualizado en KLayout con el GDS generado por OpenLane (paso `56-magic-streamout`):
+Layout visualizado en KLayout con el GDS generado por OpenLane (paso `56-magic-streamout`). Se observa la distribucion de 2,458 celdas estandar sky130 con rutas en capas li1, met1 y met2, y los anillos de alimentacion VDD/GND en las capas superiores de metal.
 
 ![Layout final en KLayout — chip_top.gds](layout.jpeg)
-
-El layout muestra la distribución de 2,458 celdas estándar sky130 con rutas en capas li1, met1 y met2, y anillos de alimentación VDD/GND.
 
 ```bash
 klayout runs/RUN_*/results/final/chip_top.gds \
@@ -262,7 +289,7 @@ chip_top/
 │   ├── fpmul.v
 │   ├── rounder.v
 │   ├── myreg.v
-│   └── fractional_divider.v   ← bug contador corregido
+│   └── fractional_divider.v
 ├── tb/
 │   └── tb_chip_top.v
 ├── config.json
@@ -270,7 +297,6 @@ chip_top/
 ├── rtl_view.png
 └── runs/
     └── RUN_2026-06-06_06-39-23/
-        ├── 06-yosys-synthesis/reports/stat.rpt
         ├── 54-openroad-stapostpnr/
         └── final/gds/chip_top.gds
 ```
@@ -279,6 +305,6 @@ chip_top/
 
 ## Referencias
 
-- [bfloat16-riscv — Módulos aritméticos fuente](https://github.com/jimarinh/bfloat16-riscv)
+- [bfloat16-riscv — Modulos aritmeticos fuente](https://github.com/jimarinh/bfloat16-riscv)
 - [OpenLane 2 Documentation](https://openlane2.readthedocs.io)
 - [SkyWater sky130A PDK](https://skywater-pdk.readthedocs.io)
