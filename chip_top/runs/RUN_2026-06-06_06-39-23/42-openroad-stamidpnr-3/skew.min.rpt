@@ -1,0 +1,18 @@
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+Writing metric clock__skew__worst_hold__corner:nom_tt_025C_1v80: -0.5184289810850188
+======================= nom_tt_025C_1v80 Corner ===================================
+
+Clock clk
+0.463469 source latency _3001_/CLK ^
+-0.481898 target latency _3010_/CLK ^
+-0.500000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.518429 hold skew
+
+Clock sclk_virt
+No launch/capture paths found.
+
