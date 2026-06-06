@@ -1,0 +1,81 @@
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/34-openroad-cts/chip_top.odb'…
+Reading design constraints file at '/foss/designs/chip_top/constraints.sdc'…
+[WARNING STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[INFO] No information on clock propagation in input SDC file-- propagating all clocks.
+[INFO] Setting RC values…
+[INFO RSZ-0094] Found 16 endpoints with setup violations.
+[INFO RSZ-0099] Repairing 16 out of 16 (100.00%) violating endpoints...
+   Iter   | Removed | Resized | Inserted | Cloned |  Pin  |    WNS   |   TNS      |  Viol  | Worst
+          | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |            | Endpts | Endpt
+---------------------------------------------------------------------------------------------------
+        0 |       0 |       0 |        0 |      0 |     0 |   -2.204 |      -21.3 |     16 | _3023_/D
+       10 |       0 |       4 |        6 |      0 |     2 |   -0.865 |       -6.0 |     16 | _3023_/D
+       20 |       0 |       8 |       21 |      0 |     4 |   -0.348 |       -2.4 |     16 | _3023_/D
+       30 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     15 | _3023_/D
+       30 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     14 | _3023_/D
+       31 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     13 | _3023_/D
+       32 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     12 | _3023_/D
+       33 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     11 | _3023_/D
+       34 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |     10 | _3023_/D
+       35 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      9 | _3023_/D
+       36 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      8 | _3023_/D
+       37 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      7 | _3023_/D
+       38 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      6 | _3023_/D
+       39 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      5 | _3023_/D
+       40 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      5 | _3023_/D
+       40 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      4 | _3023_/D
+       41 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      3 | _3023_/D
+       42 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      2 | _3023_/D
+       43 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      1 | _3023_/D
+       44 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      0 | _3023_/D
+       45 |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      0 | _3023_/D
+    final |       0 |      12 |       31 |      0 |     6 |    0.232 |        0.0 |      0 | _3023_/D
+---------------------------------------------------------------------------------------------------
+[INFO RSZ-0045] Inserted 21 buffers, 1 to split loads.
+[INFO RSZ-0041] Resized 12 instances.
+[INFO RSZ-0043] Swapped pins on 6 instances.
+[INFO RSZ-0046] Found 182 endpoints with hold violations.
+Iteration | Resized | Buffers | Cloned Gates |   WNS   |   TNS   | Endpoint
+---------------------------------------------------------------------------
+        0 |       0 |       0 |            0 |  -0.192 | -27.121 | _3019_/D
+    final |       0 |     292 |            0 |   0.101 |  -0.000 | _3062_/D
+---------------------------------------------------------------------------
+[INFO RSZ-0032] Inserted 292 hold buffers.
+Placement Analysis
+---------------------------------
+total displacement       2624.4 u
+average displacement        1.0 u
+max displacement           14.3 u
+original HPWL           33611.6 u
+legalized HPWL          36997.4 u
+delta HPWL                   10 %
+
+[INFO DPL-0020] Mirrored 919 instances
+[INFO DPL-0021] HPWL before           36997.4 u
+[INFO DPL-0022] HPWL after            35380.8 u
+[INFO DPL-0023] HPWL delta               -4.4 %
+[INFO] Setting RC values…
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               126     472.95
+  Tap cell                                422     528.01
+  Clock buffer                             17     245.24
+  Timing Repair Buffer                    318    3154.28
+  Inverter                                246     933.40
+  Clock inverter                           15     231.47
+  Sequential cell                         185    4787.09
+  Multi-Input combinational cell         1249    9863.21
+  Total                                  2578   20215.64
+Writing OpenROAD database to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/36-openroad-resizertimingpostcts/chip_top.odb'…
+Writing netlist to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/36-openroad-resizertimingpostcts/chip_top.nl.v'…
+Writing powered netlist to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/36-openroad-resizertimingpostcts/chip_top.pnl.v'…
+Writing layout to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/36-openroad-resizertimingpostcts/chip_top.def'…
+Writing timing constraints to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/36-openroad-resizertimingpostcts/chip_top.sdc'…

@@ -1,0 +1,69 @@
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/foss/pdks/ciel/sky130/versions/d400e26845538beaeb7cc5fdb9bfc06c30ea27cb/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/27-openroad-globalplacement/chip_top.odb'…
+Reading design constraints file at '/foss/designs/chip_top/constraints.sdc'…
+[WARNING STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[INFO] No information on clock propagation in input SDC file-- propagating all clocks.
+[INFO] Setting RC values…
+[INFO RSZ-0027] Inserted 3 input buffers.
+[INFO RSZ-0028] Inserted 1 output buffers.
+[INFO RSZ-0058] Using max wire length 6335um.
+Iteration | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------
+        0 |       0 |       0 |             0 |      1689
+      100 |      84 |       0 |             0 |      1589
+      200 |     172 |       0 |             0 |      1489
+      300 |     247 |       0 |             0 |      1389
+      400 |     322 |       0 |             0 |      1289
+      500 |     406 |       0 |             0 |      1189
+      600 |     494 |       0 |             0 |      1089
+      700 |     561 |       0 |             0 |       989
+      800 |     655 |       0 |             0 |       889
+      900 |     735 |       0 |             0 |       789
+     1000 |     814 |       0 |             0 |       689
+     1100 |     898 |       0 |             0 |       589
+     1200 |     987 |       0 |             0 |       489
+     1300 |    1076 |       0 |             0 |       389
+     1400 |    1153 |       0 |             0 |       289
+     1500 |    1241 |       0 |             3 |       189
+     1600 |    1241 |       0 |           103 |        89
+    final |    1244 |       1 |           186 |         0
+---------------------------------------------------------
+[INFO RSZ-0034] Found 186 slew violations.
+[INFO RSZ-0036] Found 1 capacitance violations.
+[INFO RSZ-0038] Inserted 1 buffers in 186 nets.
+[INFO RSZ-0039] Resized 1244 instances.
+Placement Analysis
+---------------------------------
+total displacement       3979.3 u
+average displacement        1.8 u
+max displacement           13.0 u
+original HPWL           26551.3 u
+legalized HPWL          30354.6 u
+delta HPWL                   14 %
+
+[INFO DPL-0020] Mirrored 610 instances
+[INFO DPL-0021] HPWL before           30354.6 u
+[INFO DPL-0022] HPWL after            29463.3 u
+[INFO DPL-0023] HPWL delta               -2.9 %
+[INFO] Setting RC values…
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               126     472.95
+  Tap cell                                422     528.01
+  Timing Repair Buffer                      5      72.57
+  Inverter                                246     933.40
+  Sequential cell                         185    4787.09
+  Multi-Input combinational cell         1249    9791.89
+  Total                                  2233   16585.91
+Writing OpenROAD database to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/31-openroad-repairdesignpostgpl/chip_top.odb'…
+Writing netlist to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/31-openroad-repairdesignpostgpl/chip_top.nl.v'…
+Writing powered netlist to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/31-openroad-repairdesignpostgpl/chip_top.pnl.v'…
+Writing layout to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/31-openroad-repairdesignpostgpl/chip_top.def'…
+Writing timing constraints to '/foss/designs/chip_top/runs/RUN_2026-06-06_06-39-23/31-openroad-repairdesignpostgpl/chip_top.sdc'…

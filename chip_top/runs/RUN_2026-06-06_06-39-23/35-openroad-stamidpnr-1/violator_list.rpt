@@ -1,0 +1,16 @@
+
+===========================================================================
+Violator List
+============================================================================
+[hold reg-reg] _3163_/Q -> _3172_/D : -0.145309
+[hold reg-reg] _3167_/Q -> _3168_/D : -0.139476
+[hold reg-reg] _3169_/Q -> _3170_/D : -0.135609
+[hold reg-reg] _3165_/Q -> _3166_/D : -0.103489
+[hold reg-reg] _3170_/Q -> _3126_/D : -0.032076
+[hold reg-reg] _3142_/Q -> _3142_/D : -0.002122
+Writing metric timing__hold_vio__count__corner:nom_tt_025C_1v80: 6
+Writing metric timing__hold_r2r__ws__corner:nom_tt_025C_1v80: -0.145309
+Writing metric timing__hold_r2r_vio__count__corner:nom_tt_025C_1v80: 6
+Writing metric timing__setup_vio__count__corner:nom_tt_025C_1v80: 0
+Writing metric timing__setup_r2r__ws__corner:nom_tt_025C_1v80: 9.330919
+Writing metric timing__setup_r2r_vio__count__corner:nom_tt_025C_1v80: 0
