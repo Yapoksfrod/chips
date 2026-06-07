@@ -1,6 +1,6 @@
 # chip_top — Procesador Aritmético bfloat16 con Interfaz SPI
 
-**Tecnología:** SkyWater sky130A · **Herramienta:** OpenLane 2 · **Reloj:** 50 MHz
+**Tecnología:** SkyWater sky130A · **Herramienta:** OpenLane 2 · **Reloj:** 50 MHz · **Integrantes:** Daniel Restrepo Ocampo, Juan Pablo Soto Alarcón, Juan Fernando Castaño Sánchez, Hannier Yamith Castillo Molina, Andrés Felipe Tapasco Quintero
 
 ---
 
