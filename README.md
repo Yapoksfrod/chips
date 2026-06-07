@@ -255,15 +255,6 @@ Una limitación identificada es que el diseño no implementa las operaciones MAC
 
 El timing cierra sin violaciones en el corner tipico (TT, 25 grados C, 1.8V). En el corner lento (SS, 100 grados C, 1.6V) el WNS es -0.51 ns, lo que indica que a 50 MHz el diseno presenta violaciones marginales en condiciones extremas. Para un diseno orientado a produccion se recomendaria reducir el reloj a 45 MHz o ajustar el CLOCK_PERIOD a 22 ns en el config.json.
 
-### Potencia (corner tipico)
-
-| Tipo | Valor |
-|---|---|
-| Potencia interna | 0.679 mW |
-| Potencia de conmutacion | 0.290 mW |
-| Potencia de fuga | 30 nW |
-| Potencia total | 0.97 mW |
-
 ---
 
 ## 8. Layout final
@@ -279,29 +270,6 @@ klayout runs/RUN_*/results/final/chip_top.gds \
 
 ---
 
-## Estructura del repositorio
-
-```
-chip_top/
-├── src/
-│   ├── chip_top.v
-│   ├── fp16_sum_sub.v
-│   ├── fpmul.v
-│   ├── rounder.v
-│   ├── myreg.v
-│   └── fractional_divider.v
-├── tb/
-│   └── tb_chip_top.v
-├── config.json
-├── constraints.sdc
-├── rtl_view.png
-└── runs/
-    └── RUN_2026-06-06_06-39-23/
-        ├── 54-openroad-stapostpnr/
-        └── final/gds/chip_top.gds
-```
-
----
 
 ## Referencias
 
