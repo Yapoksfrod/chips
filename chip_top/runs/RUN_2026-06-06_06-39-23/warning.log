@@ -1,0 +1,50 @@
+463 Lint warnings found.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[GRT-0097] No global routing found for nets.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[CTS-0041] Net "sclk" has 1 sinks. Skipping...
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[GRT-0097] No global routing found for nets.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[GRT-0097] No global routing found for nets.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via2
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+[DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
+[DRT-0120] Large net net2 has 119 pins which may impact routing performance. Consider optimization.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+'VSRC_LOC_FILES' was not given a value, which may make the results of IR drop analysis inaccurate. If you are not integrating a top-level chip for manufacture, you may ignore this warning, otherwise, see the documentation for 'VSRC_LOC_FILES'.
+[STA-0441] set_input_delay relative to a clock defined on the same port/pin not allowed.
+Setup violations found in the following corners:
+* max_ss_100C_1v60
+* min_ss_100C_1v60
+* nom_ss_100C_1v60
+Max Slew violations found in the following corners:
+* max_ss_100C_1v60
+Max Cap violations found in the following corners:
+* max_ss_100C_1v60
+* nom_ss_100C_1v60
